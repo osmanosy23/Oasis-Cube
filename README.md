@@ -1,1 +1,1 @@
-# cool-ocaml
+Authors: Osman Osman (oeo7)
