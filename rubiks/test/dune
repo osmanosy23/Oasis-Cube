@@ -1,0 +1,3 @@
+(executable
+ (name main)
+ (libraries rubiks ounit2))
