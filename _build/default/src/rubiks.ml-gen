@@ -1,0 +1,2 @@
+(** @canonical Rubiks.Cube *)
+module Cube = Rubiks__Cube
