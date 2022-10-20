@@ -3,10 +3,6 @@ open Graphics;;
 
 open_graph " 1000x1000"
 
-
-(*Fonction d'affichage du patron*)
-
-
 type color = White | Red | Blue | Orange | Yellow | Green 
 let white_face = [|White;White;White;White;White;White|]
 let red_face = [|Red;Red;Red;Red;Red;Red|]
