@@ -1,2 +1,3 @@
-(library
- (name rubiks))
+(executables
+ (names cube)
+ (libraries graphics))
