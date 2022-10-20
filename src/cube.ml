@@ -1,3 +1,4 @@
+(*Use '#require "graphics"' in utop before running code*)
 open Graphics;;
 
 open_graph " 300x300"
