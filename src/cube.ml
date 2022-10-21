@@ -24,22 +24,22 @@ let draw_2dcube cb =
     for j=0 to 8 do 
       set_color (cb.(0).(j));
       match j mod 3 with
-      0 ->  fill_rect (0) (j/3 * 100) 100 100;
-      | 1 -> fill_rect (100) (j/3 * 100) 100 100;
-      | 2 -> fill_rect (200) (j/3 * 100) 100 100;
+      0 ->  fill_rect (350) (j/3 * 100 + 350) 100 100;
+      | 1 -> fill_rect (450) (j/3 * 100 + 350) 100 100;
+      | 2 -> fill_rect (550) (j/3 * 100 + 350) 100 100;
       | _ -> failwith "invalid"
   done ;;
 draw_2dcube cube;
-moveto 500 500;
+moveto 100 100;
 Graphics.set_color black;
-fill_rect 95 0 10 300;
-fill_rect 295 0 10 305;
-fill_rect 195 0 10 300;
-fill_rect 0 195 300 10;
-fill_rect 0 95 300 10;
-fill_rect 0 295 300 10;
-fill_rect 0 0 5 300;
-fill_rect 0 0 5 300;
+fill_rect 450 350 10 300;
+fill_rect 650 350 10 310;
+fill_rect 550 350 10 300;
+fill_rect 350 550 300 10;
+fill_rect 350 450 300 10;
+fill_rect 350 650 300 10;
+fill_rect 350 350 10 300;
+fill_rect 350 350 300 10;
 
 
 (* let cube_rep_r =
