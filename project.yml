@@ -15,6 +15,6 @@ title: "The Oasis Cube"
 git-repo: "https://github.com/osmanosy23/CS-3110-Final-Project"
 demo-video-url: ""
 desc: >
-  Our project is a interactive Rubik's Cube simulator. It supports all the movements
-  of Rubik's Cube (R U L ...) and rotations (y, z, x). The cube can also solve itself 
-  if prompted. It has a 3D representation and a 2D representation.
+  Our project is an interactive Rubik's Cube simulator. It supports all the movements
+  of a Rubik's Cube (R U L ...) and rotations (y, z, x). The cube can also solve itself 
+  if prompted. It has a 3D representation and a 2D representation of the cube.
