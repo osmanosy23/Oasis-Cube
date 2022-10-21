@@ -23,7 +23,7 @@ let green_face = [|Green;Green;Green;Green;Green;Green;Green;Green;Green|]
 
 let cube = [|white_face; red_face; blue_face; orange_face; yellow_face; green_face|]
 let set_color = function
-| White -> set_color magenta 
+| White -> set_color white
 | Red -> set_color red 
 | Green -> set_color green 
 | Orange -> set_color (rgb 255 165 0) 
@@ -70,7 +70,6 @@ let draw_2dcube f =
       | _ -> failwith "invalid"
   done ;;
 draw_2dcube cube.(0);
-moveto 100 100;
 
 Graphics.set_color black;
 fill_rect 450 350 10 300;
@@ -82,31 +81,41 @@ fill_rect 350 650 300 10;
 fill_rect 350 350 10 300;
 fill_rect 350 350 300 10;
 
+let read () =
+  while
+  (
+    match (read_key ()) with 
+    | 'q' -> close_graph () ;false
+    |c   -> 
+begin
+  match c with
+  | 'r' -> turn_clock cube.(0); draw_2dcube cube.(0);
+  Graphics.set_color black;
+fill_rect 450 350 10 300;
+fill_rect 650 350 10 310;
+fill_rect 550 350 10 300;
+fill_rect 350 550 300 10;
+fill_rect 350 450 300 10;
+fill_rect 350 650 300 10;
+fill_rect 350 350 10 300;
+fill_rect 350 350 300 10;
+  | 'c' -> turn_counter cube.(0); draw_2dcube cube.(0);
+  Graphics.set_color black;
+fill_rect 450 350 10 300;
+fill_rect 650 350 10 310;
+fill_rect 550 350 10 300;
+fill_rect 350 550 300 10;
+fill_rect 350 450 300 10;
+fill_rect 350 650 300 10;
+fill_rect 350 350 10 300;
+fill_rect 350 350 300 10;
+  |_    -> ()
+end;
+true) do ()
+done 
+in read ();
 
-let rotate () = match (read_key ()) with
-| 'e' -> String.make 1 (read_key ())
-(* | 'q' -> close_graph ()
-| 'r' ->turn_clock cube.(0);
-draw_2dcube (cube.(0));
-Graphics.set_color black;
-fill_rect 450 350 10 300;
-fill_rect 650 350 10 310;
-fill_rect 550 350 10 300;
-fill_rect 350 550 300 10;
-fill_rect 350 450 300 10;
-fill_rect 350 650 300 10;
-fill_rect 350 350 10 300;
-fill_rect 350 350 300 10; *)
-(*| 'c' -> draw_2dcube (turn_counter cube.(0));Graphics.set_color black;
-fill_rect 450 350 10 300;
-fill_rect 650 350 10 310;
-fill_rect 550 350 10 300;
-fill_rect 350 550 300 10;
-fill_rect 350 450 300 10;
-fill_rect 350 650 300 10;
-fill_rect 350 350 10 300;
-fill_rect 350 350 300 10; *)
-in rotate ();
+
 
 
 (* let cube_rep_r =
