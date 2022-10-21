@@ -1,3 +1,6 @@
+type color
+(** The type of colors representing the cube. *)
+
 type cube
 (** The abstract type of values representing the cube. *)
 

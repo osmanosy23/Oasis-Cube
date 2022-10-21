@@ -29,9 +29,7 @@ let set_color = function
 | Orange -> set_color (rgb 255 165 0) 
 | Yellow -> set_color yellow 
 | Blue -> set_color blue 
-(*match face with
-[|a;b;c;d;e;f;g;h;i |] -> [|c;f;i;b;e;h;a;d;g|]
-|_ -> failwith "invalid"*)
+
 let turn_clock face = 
   match face with
 [|a;b;c;d;e;f;g;h;i |] -> 
@@ -45,7 +43,7 @@ let turn_clock face =
   face.(7) <- d;
   face.(8) <- g;
 |_ -> failwith "invalid"
-(*face = [|g;d;a;h;e;b;i;f;c|]*)
+
 let turn_counter face =
   match face with
 [|a;b;c;d;e;f;g;h;i |] -> 
