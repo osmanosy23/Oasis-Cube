@@ -13,10 +13,10 @@ opam update; opam upgrade
 opam install graphics
 ```
 5. You may need to install core or batteries via 
-'''
+```
 opam install core
 opam install batteries
-'''
+```
 
 ## *Linux*
 1. Make sure that x11 window manager is installed
