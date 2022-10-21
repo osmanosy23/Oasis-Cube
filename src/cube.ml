@@ -29,16 +29,16 @@ let set_color = function
 | Orange -> set_color (rgb 255 165 0) 
 | Yellow -> set_color yellow 
 | Blue -> set_color blue 
-let turn_clock = function 
+let turn_clock face = match face with
 [|a;b;c;d;e;f;g;h;i |] -> [|c;f;i;b;e;h;a;d;g|]
 |_ -> failwith "invalid"
-let turn_counter = function
+let turn_counter face = match face with
 [|a;b;c;d;e;f;g;h;i |] -> [|g;d;a;h;e;b;i;f;c|]
 |_ -> failwith "invalid"
 
 let draw_2dcube cb =
     for j=0 to 8 do 
-      set_color (turn_counter cb.(0)).(j);
+      set_color (cb.(0)).(j);
       match j mod 3 with
       0 ->  fill_rect (350) (j/3 * 100 + 350) 100 100;
       | 1 -> fill_rect (450) (j/3 * 100 + 350) 100 100;
@@ -58,9 +58,17 @@ fill_rect 350 350 10 300;
 fill_rect 350 350 300 10;
 
 
+let rotate () = match (read_key ()) with
+| 'q' -> close_graph ()
+| 'r' -> rotate_clockwise ()
+| 'c' -> rotate_counter_clockwise ()
+in rotate ();
+
+
 (* let cube_rep_r =
   [| [| [| "R"; "R"; "R" |]; [| "R"; "R"; "R" |]; [| "R"; "R"; "R" |] |] |]
 
 let () = cube_rep_r |> Array.iter (Array.iter print_endline) *)
 
 (*Create *) 
+
