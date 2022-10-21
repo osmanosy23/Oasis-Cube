@@ -33,3 +33,7 @@ Execute the following lines:
 dune utop
 #use "src/cube.ml";;
 ```
+## **Controls**
+- Press the "r" key to turn the cube face clockwise
+- Press the "c" key to turn the cube face counter-clockwise
+- Press the "q" key to terminate the program
