@@ -2,7 +2,17 @@
 open Graphics;;
 
 open_graph " 1000x1000"
-
+(**positions 0-8 of a face array represent the following
+   0 = bottom left of face
+   1 = bottom middle of face 
+   2 = bottom right of face
+   3 = middle left of face
+   4 = center of face
+   5 = middle right of face
+   6 = top left of face
+   7 = top middle of face
+   8 = top right of face
+*)
 type color = White | Red | Blue | Orange | Yellow | Green 
 let white_face = [|White;White;White;White;White;White;White;White;White|]
 let red_face = [|Red;Red;Red;Red;Red;Red;Red;Red;Red|]
