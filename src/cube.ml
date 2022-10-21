@@ -60,18 +60,16 @@ let turn_counter face =
   face.(8) <- c;
 |_ -> failwith "invalid"
 
-let draw_2dcube f =
+let draw_2dcube f = 
     for j=0 to 8 do 
       set_color f.(j);
       match j mod 3 with
-      0 ->  fill_rect (350) (j/3 * 100 + 350) 100 100;
-      | 1 -> fill_rect (450) (j/3 * 100 + 350) 100 100;
-      | 2 -> fill_rect (550) (j/3 * 100 + 350) 100 100;
+      0 ->  fill_rect (350) (j/3 * 100 + 350) 100 100
+      | 1 -> fill_rect (450) (j/3 * 100 + 350) 100 100
+      | 2 -> fill_rect (550) (j/3 * 100 + 350) 100 100
       | _ -> failwith "invalid"
-  done ;;
-draw_2dcube cube.(0);
-
-Graphics.set_color black;
+  done;
+  Graphics.set_color black;
 fill_rect 450 350 10 300;
 fill_rect 650 350 10 310;
 fill_rect 550 350 10 300;
@@ -79,7 +77,9 @@ fill_rect 350 550 300 10;
 fill_rect 350 450 300 10;
 fill_rect 350 650 300 10;
 fill_rect 350 350 10 300;
-fill_rect 350 350 300 10;
+fill_rect 350 350 300 10;;
+
+draw_2dcube cube.(0);
 
 let read () =
   while
@@ -90,38 +90,11 @@ let read () =
 begin
   match c with
   | 'r' -> turn_clock cube.(0); draw_2dcube cube.(0);
-  Graphics.set_color black;
-fill_rect 450 350 10 300;
-fill_rect 650 350 10 310;
-fill_rect 550 350 10 300;
-fill_rect 350 550 300 10;
-fill_rect 350 450 300 10;
-fill_rect 350 650 300 10;
-fill_rect 350 350 10 300;
-fill_rect 350 350 300 10;
   | 'c' -> turn_counter cube.(0); draw_2dcube cube.(0);
-  Graphics.set_color black;
-fill_rect 450 350 10 300;
-fill_rect 650 350 10 310;
-fill_rect 550 350 10 300;
-fill_rect 350 550 300 10;
-fill_rect 350 450 300 10;
-fill_rect 350 650 300 10;
-fill_rect 350 350 10 300;
-fill_rect 350 350 300 10;
   |_    -> ()
 end;
 true) do ()
 done 
 in read ();
 
-
-
-
-(* let cube_rep_r =
-  [| [| [| "R"; "R"; "R" |]; [| "R"; "R"; "R" |]; [| "R"; "R"; "R" |] |] |]
-
-let () = cube_rep_r |> Array.iter (Array.iter print_endline) *)
-
-(*Create *) 
 
