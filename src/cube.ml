@@ -1,4 +1,4 @@
-(*Use '#require "graphics"' in utop before running code*)
+(*Use [dune utop] in terminal and type [#use "cube.ml";;] to run code*)
 open Graphics;;
 
 open_graph " 1000x1000"
