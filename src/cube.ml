@@ -45,8 +45,19 @@ let turn_clock face =
   face.(7) <- d;
   face.(8) <- g;
 |_ -> failwith "invalid"
-let turn_counter face = match face with
-[|a;b;c;d;e;f;g;h;i |] -> face = [|g;d;a;h;e;b;i;f;c|]
+(*face = [|g;d;a;h;e;b;i;f;c|]*)
+let turn_counter face =
+  match face with
+[|a;b;c;d;e;f;g;h;i |] -> 
+  face.(0) <- g;
+  face.(1) <- d;
+  face.(2) <- a;
+  face.(3) <- h;
+  face.(4) <- e;
+  face.(5) <- b;
+  face.(6) <- i;
+  face.(7) <- f;
+  face.(8) <- c;
 |_ -> failwith "invalid"
 
 let draw_2dcube f =
