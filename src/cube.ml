@@ -1,7 +1,7 @@
 (*Use [dune utop] in terminal and type [#use "cube.ml";;] to run code*)
 open Graphics;;
 
-open_graph " 1000x1000"
+open_graph " 1500x1500"
 (**positions 0-8 of a face array represent the following
    0 = bottom left of face
    1 = bottom middle of face 
@@ -68,14 +68,29 @@ let draw_2dcube f =
       | _ -> failwith "invalid"
   done;
   Graphics.set_color black;
-fill_rect 450 350 10 300;
-fill_rect 650 350 10 310;
-fill_rect 550 350 10 300;
-fill_rect 350 550 300 10;
-fill_rect 350 450 300 10;
-fill_rect 350 650 300 10;
-fill_rect 350 350 10 300;
-fill_rect 350 350 300 10;;
+fill_rect 450 50 10 900;
+fill_rect 650 50 10 900;
+fill_rect 550 50 10 900;
+fill_rect 50 550 1200 10;
+fill_rect 50 450 1200 10;
+fill_rect 50 650 1200 10;
+fill_rect 350 50 10 900;
+fill_rect 50 350 1200 10;
+fill_rect 50 350 10 300;
+fill_rect 150 350 10 300;
+fill_rect 250 350 10 300;
+fill_rect 750 350 10 300;
+fill_rect 850 350 10 300;
+fill_rect 950 350 10 300;
+fill_rect 1050 350 10 300;
+fill_rect 1150 350 10 300;
+fill_rect 1250 350 10 310;
+fill_rect 350 50 300 10;
+fill_rect 350 150 300 10;
+fill_rect 350 250 300 10;
+fill_rect 350 750 300 10;
+fill_rect 350 850 300 10;
+fill_rect 350 950 310 10;;
 
 draw_2dcube cube.(0);
 
