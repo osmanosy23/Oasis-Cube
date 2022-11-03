@@ -15,11 +15,11 @@ open_graph " 1500x1500"
 *)
 type color = White | Red | Blue | Orange | Yellow | Green 
 let white_face = [|White;Red;Blue;Blue;White;Green;Red;Blue;Green|]
-let red_face = [|Red;Red;Red;Red;Red;Red;Red;Red;Red|]
-let blue_face = [|Blue;Blue;Blue;Blue;Blue;Blue;Blue;Blue;Blue|]
-let orange_face = [|Orange;Orange;Orange;Orange;Orange;Orange;Orange;Orange;Orange|]
-let yellow_face = [|Yellow;Yellow;Yellow;Yellow;Yellow;Yellow;Yellow;Yellow;Yellow|]
-let green_face = [|Green;Green;Green;Green;Green;Green;Green;Green;Green|]
+let red_face = [|Blue;Red;White;Yellow;Red;Green;Red;White;Orange|]
+let blue_face = [|Green;Orange;White;Red;Blue;White;Blue;Blue;Yellow|]
+let orange_face = [|Yellow;Orange;Orange;Green;Orange;Blue;White;Red;Red|]
+let yellow_face = [|White;Blue;Green;Green;Yellow;Yellow;Blue;Red;White|]
+let green_face = [|Orange;Red;Blue;White;Green;Blue;Yellow;Red;Red|]
 
 let cube = [|white_face; red_face; blue_face; orange_face; yellow_face; green_face|]
 let set_color = function
@@ -90,9 +90,9 @@ let turn_counter_outer rface tface lface bface =
       tface.(0) <- i;
       tface.(1) <- h;
       tface.(2) <- g;
-      rface.(6) <- j;
+      rface.(6) <- l;
       rface.(3) <- k;
-      rface.(0) <- l;
+      rface.(0) <- j;
       bface.(6) <- c;
       bface.(7) <- b;
       bface.(8) <- a;
