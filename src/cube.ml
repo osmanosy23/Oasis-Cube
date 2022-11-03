@@ -30,19 +30,39 @@ let set_color = function
 | Yellow -> set_color yellow 
 | Blue -> set_color blue 
 
-let turn_clock face = 
-  match face with
+let turn_clock pface = 
+  match pface with
 [|a;b;c;d;e;f;g;h;i |] -> 
-  face.(0) <- c;
-  face.(1) <- f;
-  face.(2) <- i;
-  face.(3) <- b;
-  face.(4) <- e;
-  face.(5) <- h;
-  face.(6) <- a;
-  face.(7) <- d;
-  face.(8) <- g;
-|_ -> failwith "invalid"
+  pface.(0) <- c;
+  pface.(1) <- f;
+  pface.(2) <- i;
+  pface.(3) <- b;
+  pface.(4) <- e;
+  pface.(5) <- h;
+  pface.(6) <- a;
+  pface.(7) <- d;
+  pface.(8) <- g;
+|  _ -> failwith "invalid"
+let turn_clock_outer rface tface lface bface = 
+let open Array in 
+let temparrayone = append lface tface in
+let temparraytwo = append temparrayone rface in
+let changearray = append temparraytwo bface in
+  match changearray with 
+  [|_;_;a;_;_;b;_;_;c;d;e;f;_;_;_;_;_;_;g;_;_;h;_;_;i;_;_;_;_;_;_;_;_;j;k;l|] -> 
+    lface.(2) <- l;
+    lface.(5) <- k;
+    lface.(8) <- j;
+    tface.(0) <- a;
+    tface.(1) <- b;
+    tface.(2) <- c;
+    rface.(6) <- d;
+    rface.(3) <- e;
+    rface.(0) <- f;
+    bface.(6) <- g;
+    bface.(7) <- h;
+    bface.(8) <- i;
+| _ -> failwith "invalid"
 
 let turn_counter face =
   match face with
@@ -57,6 +77,26 @@ let turn_counter face =
   face.(7) <- f;
   face.(8) <- c;
 |_ -> failwith "invalid"
+let turn_counter_outer rface tface lface bface = 
+  let open Array in 
+  let temparrayone = append lface tface in
+  let temparraytwo = append temparrayone rface in
+  let changearray = append temparraytwo bface in
+    match changearray with 
+    [|_;_;a;_;_;b;_;_;c;d;e;f;_;_;_;_;_;_;g;_;_;h;_;_;i;_;_;_;_;_;_;_;_;j;k;l|] -> 
+      lface.(2) <- d;
+      lface.(5) <- e;
+      lface.(8) <- f;
+      tface.(0) <- i;
+      tface.(1) <- h;
+      tface.(2) <- g;
+      rface.(6) <- j;
+      rface.(3) <- k;
+      rface.(0) <- l;
+      bface.(6) <- c;
+      bface.(7) <- b;
+      bface.(8) <- a;
+  | _ -> failwith "invalid"
 
 let draw_2dcube f x y= 
     for j=0 to 8 do 
@@ -107,8 +147,22 @@ let read () =
     |c   -> 
 begin
   match c with
-  | 'r' -> turn_clock cube.(0); draw_2dcube cube.(0) 350 350;
+  | 'r' -> turn_clock cube.(0); 
+  turn_clock_outer cube.(5) cube.(1) cube.(2) cube.(3);
+  draw_2dcube cube.(0) 350 350;
+  draw_2dcube cube.(2) 50 350;
+  draw_2dcube cube.(5) 650 350;
+  draw_2dcube cube.(4) 950 350;
+  draw_2dcube cube.(1) 350 650;
+  draw_2dcube cube.(3) 350 50;
   | 'c' -> turn_counter cube.(0); draw_2dcube cube.(0) 350 350;
+  turn_counter_outer cube.(5) cube.(1) cube.(2) cube.(3);
+  draw_2dcube cube.(0) 350 350;
+  draw_2dcube cube.(2) 50 350;
+  draw_2dcube cube.(5) 650 350;
+  draw_2dcube cube.(4) 950 350;
+  draw_2dcube cube.(1) 350 650;
+  draw_2dcube cube.(3) 350 50;
   |_    -> ()
 end;
 true) do ()
