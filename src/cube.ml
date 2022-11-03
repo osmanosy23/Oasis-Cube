@@ -14,7 +14,7 @@ open_graph " 1500x1500"
    8 = top right of face
 *)
 type color = White | Red | Blue | Orange | Yellow | Green 
-let white_face = [|White;Red;Blue;Blue;Yellow;Green;Red;Blue;Green|]
+let white_face = [|White;Red;Blue;Blue;White;Green;Red;Blue;Green|]
 let red_face = [|Red;Red;Red;Red;Red;Red;Red;Red;Red|]
 let blue_face = [|Blue;Blue;Blue;Blue;Blue;Blue;Blue;Blue;Blue|]
 let orange_face = [|Orange;Orange;Orange;Orange;Orange;Orange;Orange;Orange;Orange|]
@@ -58,13 +58,13 @@ let turn_counter face =
   face.(8) <- c;
 |_ -> failwith "invalid"
 
-let draw_2dcube f = 
+let draw_2dcube f x y= 
     for j=0 to 8 do 
       set_color f.(j);
       match j mod 3 with
-      0 ->  fill_rect (350) (j/3 * 100 + 350) 100 100
-      | 1 -> fill_rect (450) (j/3 * 100 + 350) 100 100
-      | 2 -> fill_rect (550) (j/3 * 100 + 350) 100 100
+      0 ->  fill_rect (x) (j/3 * 100 + y) 100 100
+      | 1 -> fill_rect (x + 100) (j/3 * 100 + y) 100 100
+      | 2 -> fill_rect (x + 200) (j/3 * 100 + y) 100 100
       | _ -> failwith "invalid"
   done;
   Graphics.set_color black;
@@ -92,7 +92,12 @@ fill_rect 350 750 300 10;
 fill_rect 350 850 300 10;
 fill_rect 350 950 310 10;;
 
-draw_2dcube cube.(0);
+draw_2dcube cube.(0) 350 350;
+draw_2dcube cube.(2) 50 350;
+draw_2dcube cube.(5) 650 350;
+draw_2dcube cube.(4) 950 350;
+draw_2dcube cube.(1) 350 650;
+draw_2dcube cube.(3) 350 50;
 
 let read () =
   while
@@ -102,8 +107,8 @@ let read () =
     |c   -> 
 begin
   match c with
-  | 'r' -> turn_clock cube.(0); draw_2dcube cube.(0);
-  | 'c' -> turn_counter cube.(0); draw_2dcube cube.(0);
+  | 'r' -> turn_clock cube.(0); draw_2dcube cube.(0) 350 350;
+  | 'c' -> turn_counter cube.(0); draw_2dcube cube.(0) 350 350;
   |_    -> ()
 end;
 true) do ()
