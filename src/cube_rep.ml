@@ -1,20 +1,10 @@
 open Graphics
-(* positions 0-8 of a face array represent the following
-   * 0 = bottom left of face
-     1 = bottom middle of face
-    2 = bottom right of face
-    3 = middle left of face
-    4 = center of face
-    5 = middle right of face
-    6 = top left of face
-    7 = top middle of face
-    8 = top right of face
-*)
 
 let () = open_graph " 1500x1500"
 
 type color = White | Red | Blue | Orange | Yellow | Green
 type face = color array
+type cube_type = face array
 
 let white_face = [| White; White; White; White; White; White; White; White; White |]
 let red_face = [| Red; Red; Red; Red; Red; Red; Red; Red; Red |]
@@ -41,6 +31,7 @@ let draw_2dcube f x y =
     | 2 -> fill_rect (x + 200) ((j / 3 * 100) + y) 100 100
     | _ -> failwith "invalid"
   done;
+  (*the rest of the function draws the black lines separating the colors*)
   Graphics.set_color black;
   fill_rect 450 50 10 900;
   fill_rect 650 50 10 900;
@@ -48,7 +39,6 @@ let draw_2dcube f x y =
   fill_rect 50 550 1200 10;
   fill_rect 50 450 1200 10;
   fill_rect 50 650 1200 10;
-
   fill_rect 350 50 10 900;
   fill_rect 50 350 1200 10;
   fill_rect 50 350 10 300;
@@ -66,14 +56,16 @@ let draw_2dcube f x y =
   fill_rect 350 750 300 10;
   fill_rect 350 850 300 10;
   fill_rect 350 950 310 10
-;;
 
-draw_2dcube cube.(0) 350 350;
-draw_2dcube cube.(2) 50 350;
-draw_2dcube cube.(5) 650 350;
-draw_2dcube cube.(4) 950 350;
-draw_2dcube cube.(1) 350 650;
-draw_2dcube cube.(3) 350 50
+let draw cube =
+  draw_2dcube cube.(4) 350 350;
+  draw_2dcube cube.(0) 950 350;
+  draw_2dcube cube.(5) 50 350;
+  draw_2dcube cube.(2) 650 350;
+  draw_2dcube cube.(1) 350 650;
+  draw_2dcube cube.(3) 350 50
+
+let () = draw cube
 
 (*
    Graphics.set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1" *)

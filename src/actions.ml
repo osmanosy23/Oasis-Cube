@@ -33,6 +33,10 @@ let turn_clock_outer rface tface lface bface =
       bface.(8) <- i
   | _ -> failwith "invalid"
 
+let u_turn cube =
+  turn_clock cube.(4);
+  turn_clock_outer cube.(2) cube.(1) cube.(5) cube.(3)
+
 let turn_counter face =
   match face with
   | [| a; b; c; d; e; f; g; h; i |] ->
@@ -67,3 +71,7 @@ let turn_counter_outer rface tface lface bface =
       bface.(7) <- b;
       bface.(8) <- a
   | _ -> failwith "invalid"
+
+let u'_turn cube =
+  turn_counter cube.(4);
+  turn_counter_outer cube.(2) cube.(1) cube.(5) cube.(3)
