@@ -1,0 +1,1 @@
+(** Parsing of user keyboard press and mouse click. *)
