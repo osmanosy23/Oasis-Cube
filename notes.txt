@@ -1,0 +1,3 @@
+add rotation (feasible?)
+timer?
+return solved cube

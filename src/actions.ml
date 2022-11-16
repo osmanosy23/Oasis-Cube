@@ -245,5 +245,3 @@ let d_turn cube =
 
 let m_turn cube = turn_M cube.(4) cube.(1) cube.(0) cube.(3)
 let m'_turn cube = turn_M cube.(4) cube.(3) cube.(0) cube.(1)
-
-(*r bad*)
