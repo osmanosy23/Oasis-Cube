@@ -75,39 +75,18 @@ let turn_up_layer_R rface tface lface bface =
   let changearray = append temparraytwo bface in
   match changearray with
   | [| _; _; a; _; _; b; _; _; c; _; _; d; _; _; e; _; _; f; g; _; _; h; _; _; i; _; _; _; _; j; _; _; k; _; _; l |] ->
-      lface.(2) <- d;
-      lface.(5) <- e;
-      lface.(8) <- f;
-      tface.(2) <- i;
-      tface.(5) <- h;
-      tface.(8) <- g;
-      rface.(6) <- l;
-      rface.(3) <- k;
-      rface.(0) <- j;
-      bface.(2) <- c;
-      bface.(5) <- b;
-      bface.(8) <- a
-  | _ -> failwith "invalid"
-
-let turn_down_layer_R rface tface lface bface =
-  let open Array in
-  let temparrayone = append lface tface in
-  let temparraytwo = append temparrayone rface in
-  let changearray = append temparraytwo bface in
-  match changearray with
-  | [| _; _; a; _; _; b; _; _; c; _; _; d; _; _; e; _; _; f; g; _; _; h; _; _; i; _; _; _; _; j; _; _; k; _; _; l |] ->
-      lface.(2) <- l;
+      lface.(2) <- j;
       lface.(5) <- k;
-      lface.(8) <- j;
+      lface.(8) <- l;
       tface.(2) <- a;
       tface.(5) <- b;
       tface.(8) <- c;
       rface.(6) <- d;
       rface.(3) <- e;
       rface.(0) <- f;
-      bface.(2) <- g;
+      bface.(2) <- i;
       bface.(5) <- h;
-      bface.(8) <- i
+      bface.(8) <- g
   | _ -> failwith "invalid"
 
 let turn_up_layer_L rface tface lface bface =
@@ -224,21 +203,21 @@ let f'_turn cube =
   turn_counter_face cube.(4);
   turn_counter_layer cube.(2) cube.(1) cube.(5) cube.(3)
 
-let b_turn cube =
-  turn_counter_face cube.(0);
-  turn_counter_layer cube.(5) cube.(3) cube.(2) cube.(1)
-
 let b'_turn cube =
-  turn_clock_face cube.(0);
+  turn_counter_face cube.(0);
   turn_clock_layer cube.(5) cube.(3) cube.(2) cube.(1)
 
-let r'_turn cube =
-  turn_counter_face cube.(2);
-  turn_up_layer_R cube.(0) cube.(1) cube.(4) cube.(3)
+let b_turn cube =
+  turn_clock_face cube.(0);
+  turn_counter_layer cube.(5) cube.(3) cube.(2) cube.(1)
 
 let r_turn cube =
   turn_clock_face cube.(2);
-  turn_down_layer_R cube.(0) cube.(1) cube.(4) cube.(3)
+  turn_up_layer_R cube.(0) cube.(1) cube.(4) cube.(3)
+
+let r'_turn cube =
+  turn_counter_face cube.(2);
+  turn_up_layer_R cube.(0) cube.(3) cube.(4) cube.(1)
 
 let l_turn cube =
   turn_counter_face cube.(5);
@@ -265,4 +244,6 @@ let d_turn cube =
   turn_clock_layer_D cube.(5) cube.(0) cube.(2) cube.(4)
 
 let m_turn cube = turn_M cube.(4) cube.(1) cube.(0) cube.(3)
-let m'_turn cube = turn_M cube.(0) cube.(1) cube.(4) cube.(3)
+let m'_turn cube = turn_M cube.(4) cube.(3) cube.(0) cube.(1)
+
+(*r bad*)
