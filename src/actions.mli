@@ -43,8 +43,13 @@ val m'_turn : 'a array array -> unit
 (** [m'_turn cube] makes a M' turn on [cube]. *)
 
 val e_turn : 'a array array -> unit
-(** [m'_turn cube] makes an E turn on [cube]. *)
+(** [e_turn cube] makes an E turn on [cube]. *)
 
 val e'_turn : 'a array array -> unit
-(** [m'_turn cube] makes an E' turn on [cube]. *)
+(** [e'_turn cube] makes an E' turn on [cube]. *)
 
+val s_turn : 'a array array -> unit
+(** [s_turn cube] makes an S turn on [cube]. *)
+
+val s'_turn : 'a array array -> unit
+(** [s'_turn cube] makes an S' turn on [cube]. *)
