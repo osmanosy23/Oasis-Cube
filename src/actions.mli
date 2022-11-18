@@ -41,3 +41,10 @@ val m_turn : 'a array array -> unit
 
 val m'_turn : 'a array array -> unit
 (** [m'_turn cube] makes a M' turn on [cube]. *)
+
+val e_turn : 'a array array -> unit
+(** [m'_turn cube] makes an E turn on [cube]. *)
+
+val e'_turn : 'a array array -> unit
+(** [m'_turn cube] makes an E' turn on [cube]. *)
+

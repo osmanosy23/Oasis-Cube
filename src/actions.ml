@@ -193,6 +193,27 @@ let turn_M front_face tface back_face bface =
       bface.(4) <- h;
       bface.(1) <- i
   | _ -> failwith "invalid"
+let turn_E front_face left_face right_face back_face =
+  let open Array in
+  let temparrayone = append left_face front_face in
+  let temparraytwo = append temparrayone right_face in
+  let changearray = append temparraytwo back_face in
+  match changearray with
+  | [| _; _; _; a; b; c; _; _; _; _; _; _; d; e; f; _; _; _; _; _; _; g; h; i; _; _; _; _; _; _; j; k; l; _; _; _ |] ->
+      left_face.(3) <- j;
+      left_face.(4) <- k;
+      left_face.(5) <- l;
+      front_face.(3) <- a;
+      front_face.(4) <- b;
+      front_face.(5) <- c;
+      right_face.(3) <- d;
+      right_face.(4) <- e;
+      right_face.(5) <- f;
+      back_face.(3) <- g;
+      back_face.(4) <- h;
+      back_face.(5) <- i
+  | _ -> failwith "invalid"
+
 
 (*let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]*)
 let f_turn cube =
@@ -245,3 +266,6 @@ let d_turn cube =
 
 let m_turn cube = turn_M cube.(4) cube.(1) cube.(0) cube.(3)
 let m'_turn cube = turn_M cube.(4) cube.(3) cube.(0) cube.(1)
+let e_turn cube = turn_E cube.(4) cube.(5) cube.(2) cube.(0)
+let e'_turn cube = turn_E cube.(4) cube.(2) cube.(5) cube.(0)
+
