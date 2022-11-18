@@ -193,6 +193,7 @@ let turn_M front_face tface back_face bface =
       bface.(4) <- h;
       bface.(1) <- i
   | _ -> failwith "invalid"
+
 let turn_E front_face left_face right_face back_face =
   let open Array in
   let temparrayone = append left_face front_face in
@@ -213,29 +214,28 @@ let turn_E front_face left_face right_face back_face =
       back_face.(4) <- h;
       back_face.(5) <- i
   | _ -> failwith "invalid"
-let turn_S top_face right_face bottom_face left_face = 
+
+let turn_S top_face right_face bottom_face left_face =
   let open Array in
   let temparrayone = append top_face right_face in
   let temparraytwo = append temparrayone bottom_face in
   let changearray = append temparraytwo left_face in
   match changearray with
-  | [| _; _; _; a; b; c; _; _; _;
-   _; d; _; _; e; _; _; f; _;
-   _; _; _; g; h; i; _; _; _;
-   _; j; _; _; k; _; _; l; _ |] ->
-    top_face.(3) <- j;
-    top_face.(4) <- k;
-    top_face.(5) <- l;
-    right_face.(7) <- a;
-    right_face.(4) <- b;
-    right_face.(1) <- c;
-    bottom_face.(3) <- d;
-    bottom_face.(4) <- e;
-    bottom_face.(5) <- f;
-    left_face.(1) <- i;
-    left_face.(4) <- h;
-    left_face.(7) <- g
-| _ -> failwith "invalid"
+  | [| _; _; _; a; b; c; _; _; _; _; d; _; _; e; _; _; f; _; _; _; _; g; h; i; _; _; _; _; j; _; _; k; _; _; l; _ |] ->
+      top_face.(5) <- j;
+      top_face.(4) <- k;
+      top_face.(3) <- l;
+      right_face.(1) <- a;
+      right_face.(4) <- b;
+      right_face.(7) <- c;
+      bottom_face.(3) <- d;
+      bottom_face.(4) <- e;
+      bottom_face.(5) <- f;
+      left_face.(1) <- i;
+      left_face.(4) <- h;
+      left_face.(7) <- g
+  | _ -> failwith "invalid"
+
 (*let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]*)
 let f_turn cube =
   turn_clock_face cube.(4);
@@ -290,5 +290,5 @@ let m'_turn cube = turn_M cube.(4) cube.(3) cube.(0) cube.(1)
 let e_turn cube = turn_E cube.(4) cube.(5) cube.(2) cube.(0)
 let e'_turn cube = turn_E cube.(4) cube.(2) cube.(5) cube.(0)
 let s_turn cube = turn_S cube.(1) cube.(2) cube.(3) cube.(5)
-let s'_turn cube = turn_S cube.(3) cube.(2) cube.(1) cube.(5)
+let s'_turn cube = turn_S cube.(1) cube.(5) cube.(3) cube.(2)
 (*let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]*)
