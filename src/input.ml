@@ -64,6 +64,24 @@ let read_key () =
         | 'S' ->
             s'_turn cube;
             draw cube
+        | 'y' ->
+            y_rotate cube;
+            draw cube
+        | 'Y' ->
+            y'_rotate cube;
+            draw cube
+        | 'x' ->
+            x_rotate cube;
+            draw cube
+        | 'X' ->
+            x'_rotate cube;
+            draw cube
+        | 'z' ->
+            z_rotate cube;
+            draw cube
+        | 'Z' ->
+            z'_rotate cube;
+            draw cube
         | _ -> ());
 
         true

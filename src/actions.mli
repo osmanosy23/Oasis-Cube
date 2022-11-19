@@ -49,7 +49,25 @@ val e'_turn : 'a array array -> unit
 (** [e'_turn cube] makes an E' turn on [cube]. *)
 
 val s_turn : 'a array array -> unit
-(** [s_turn cube] makes an S turn on [cube]. *)
+(** [s_turn cube] makes a S turn on [cube]. *)
 
 val s'_turn : 'a array array -> unit
-(** [s'_turn cube] makes an S' turn on [cube]. *)
+(** [s'_turn cube] makes a S' turn on [cube]. *)
+
+val y_rotate : 'a array array -> unit
+(** [y_rotate cube] makes an y rotation on [cube]. *)
+
+val y'_rotate : 'a array array -> unit
+(** [y'_rotate cube] makes an y' rotation on [cube]. *)
+
+val x_rotate : 'a array array -> unit
+(** [x_rotate cube] makes an x rotation on [cube]. *)
+
+val x'_rotate : 'a array array -> unit
+(** [x'_rotate cube] makes an x' rotation on [cube]. *)
+
+val z_rotate : 'a array array -> unit
+(** [z_rotate cube] makes a z rotation on [cube]. *)
+
+val z'_rotate : 'a array array -> unit
+(** [z'_rotate cube] makes a z' rotation on [cube]. *)
