@@ -4,17 +4,48 @@ open Graphics
 
 let cube = ref cube_rep
 
+let counter = ref ~-1
+(* let next = 
+    fun () -> 
+        counter := !counter + 1;
+        !counter
+let count_text () =
+set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
+Graphics.draw_string("Counter: " ^ string_of_int(next())) *)
+
+
+let next = 
+    fun () -> 
+        counter := !counter + 1;
+        !counter
+
+let ref_c = ref "Counter: "
+        
+let draw_count count= 
+set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
+ Graphics.draw_string(!count)
+
+ 
+ (* let count = ref draw_count *)
+let () = draw_count ref_c
+
+let hap() = ref (Graphics.draw_string(string_of_int(next()) ^ " "))
+
+
+
 let read_key () =
   while
+    !(hap());
     match read_key () with
     | 'q' ->
         close_graph ();
         false
-    | c ->
+    | c -> 
         (match c with
         | 'u' ->
             u_turn !cube;
-            draw !cube
+            draw !cube;
+
         | 'U' ->
             u'_turn !cube;
             draw !cube
@@ -93,5 +124,5 @@ let read_key () =
   do
     ()
   done
-
 let () = read_key ()
+
