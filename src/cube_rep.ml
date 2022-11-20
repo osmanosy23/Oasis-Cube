@@ -15,7 +15,17 @@ let green_face = [| Green; Green; Green; Green; Green; Green; Green; Green; Gree
 
 (* let cube = [| white_face; red_face; blue_face; orange_face; yellow_face; green_face |] *)
 (* let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |] *)
-let cube = [| orange_face; yellow_face; green_face; white_face; red_face; blue_face |]
+let cube_rep = [| orange_face; yellow_face; green_face; white_face; red_face; blue_face |]
+
+let solve () =
+  [|
+    [| Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange |];
+    [| Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |];
+    [| Green; Green; Green; Green; Green; Green; Green; Green; Green |];
+    [| White; White; White; White; White; White; White; White; White |];
+    [| Red; Red; Red; Red; Red; Red; Red; Red; Red |];
+    [| Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue |];
+  |]
 
 let set_cube_color = function
   | White -> set_color white
@@ -68,7 +78,7 @@ let draw cube =
   draw_2dcube cube.(1) 350 650;
   draw_2dcube cube.(3) 350 50
 
-let () = draw cube
+let () = draw cube_rep
 
 (*
    Graphics.set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1" *)

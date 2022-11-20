@@ -20,8 +20,11 @@ type face = color array
 type cube_type = face array
 (** [cube_type] is type of the Rubik's Cube. *)
 
-val cube : face array
-(** [cube] is the Rubik's Cube in the simulation. *)
+val cube_rep : face array
+(** [cube_rep] is the Rubik's Cube in the simulation. *)
+
+val solve : unit -> color array array
+(** [solve ()] returns a solved cube. *)
 
 val draw_2dcube : face -> int -> int -> unit
 (** [draw_2dcube face x y] draws a [face] of the Rubik's Cube center at [x, y] *)
