@@ -14,7 +14,8 @@ let yellow_face = [| Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yel
 let green_face = [| Green; Green; Green; Green; Green; Green; Green; Green; Green |]
 
 (* let cube = [| white_face; red_face; blue_face; orange_face; yellow_face; green_face |] *)
-let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]
+(* let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |] *)
+let cube = [| orange_face; yellow_face; green_face; white_face; red_face; blue_face |]
 
 let set_cube_color = function
   | White -> set_color white

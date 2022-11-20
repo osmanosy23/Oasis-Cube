@@ -2,3 +2,4 @@ add rotation (feasible?)
 timer?
 return solved cube
 rotations are off!!
+make cube smaller
