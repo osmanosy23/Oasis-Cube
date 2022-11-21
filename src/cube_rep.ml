@@ -1,6 +1,6 @@
 open Graphics
 
-let () = open_graph " 1500x1500"
+let () = open_graph " 1000x900"
 
 type color = White | Red | Blue | Orange | Yellow | Green
 type face = color array
@@ -35,44 +35,48 @@ let draw_2dcube f x y =
   for j = 0 to 8 do
     set_cube_color f.(j);
     match j mod 3 with
-    | 0 -> fill_rect x ((j / 3 * 100) + y) 100 100
-    | 1 -> fill_rect (x + 100) ((j / 3 * 100) + y) 100 100
-    | 2 -> fill_rect (x + 200) ((j / 3 * 100) + y) 100 100
+    | 0 -> fill_rect x ((j / 3 * 75) + y) 75 75
+    | 1 -> fill_rect (x + 75) ((j / 3 * 75) + y) 75 75
+    | 2 -> fill_rect (x + 150) ((j / 3 * 75) + y) 75 75
     | _ -> failwith "invalid"
   done;
   (*the rest of the function draws the black lines separating the colors*)
   Graphics.set_color black;
-  fill_rect 450 50 10 900;
-  fill_rect 650 50 10 900;
-  fill_rect 550 50 10 900;
-  fill_rect 50 550 1200 10;
-  fill_rect 50 450 1200 10;
-  fill_rect 50 650 1200 10;
-  fill_rect 350 50 10 900;
-  fill_rect 50 350 1200 10;
-  fill_rect 50 350 10 300;
-  fill_rect 150 350 10 300;
-  fill_rect 250 350 10 300;
-  fill_rect 750 350 10 300;
-  fill_rect 850 350 10 300;
-  fill_rect 950 350 10 300;
-  fill_rect 1050 350 10 300;
-  fill_rect 1150 350 10 300;
-  fill_rect 1250 350 10 310;
-  fill_rect 350 50 300 10;
-  fill_rect 350 150 300 10;
-  fill_rect 350 250 300 10;
-  fill_rect 350 750 300 10;
-  fill_rect 350 850 300 10;
-  fill_rect 350 950 310 10
+  fill_rect 275 125 7 675;
+  fill_rect 350 125 7 675;
+  fill_rect 425 125 7 675;
+  fill_rect 500 125 7 675;
+
+  fill_rect 50 350 900 7;
+  fill_rect 50 425 900 7;
+  fill_rect 50 500 900 7;
+  fill_rect 50 575 900 7;
+  
+  fill_rect 50 350 7 225;
+  fill_rect 125 350 7 225;
+  fill_rect 200 350 7 225;
+  
+  fill_rect 575 350 7 225;
+  fill_rect 650 350 7 225;
+  fill_rect 725 350 7 225;
+  fill_rect 800 350 7 225;
+  fill_rect 875 350 7 225;
+  fill_rect 950 350 7 232;
+
+  fill_rect 275 125 225 7;
+  fill_rect 275 200 225 7;
+  fill_rect 275 275 225 7;
+  fill_rect 275 650 225 7;
+  fill_rect 275 725 225 7;
+  fill_rect 275 800 232 7
 
 let draw cube =
-  draw_2dcube cube.(4) 350 350;
-  draw_2dcube cube.(0) 950 350;
+  draw_2dcube cube.(4) 275 350;
+  draw_2dcube cube.(0) 725 350;
   draw_2dcube cube.(5) 50 350;
-  draw_2dcube cube.(2) 650 350;
-  draw_2dcube cube.(1) 350 650;
-  draw_2dcube cube.(3) 350 50
+  draw_2dcube cube.(2) 500 350;
+  draw_2dcube cube.(1) 275 575;
+  draw_2dcube cube.(3) 275 125
 (* set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
    Graphics.draw_string("Counter: 0") *)
 

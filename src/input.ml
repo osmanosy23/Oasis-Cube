@@ -28,7 +28,7 @@ set_color white;
 counter := !counter + 1;
 draw_rect 0 0 100 100;
 set_color white;
-fill_rect 0 0 350 350;
+fill_rect 0 0 350 70;
 set_color black;
 Graphics.moveto 0 0;
 set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
