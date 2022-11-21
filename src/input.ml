@@ -118,6 +118,9 @@ let read_key () =
         | '.' ->
             cube := solve ();
             draw !cube
+        | '\\' ->
+            random !cube;
+            draw !cube
         | _ -> ());
 
         true

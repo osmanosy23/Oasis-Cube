@@ -71,3 +71,6 @@ val z_rotate : 'a array array -> unit
 
 val z'_rotate : 'a array array -> unit
 (** [z'_rotate cube] makes a z' rotation on [cube]. *)
+
+val random : 'a array array -> unit
+(** [random cube] makes a random number of random rotations on the [cube]. *)

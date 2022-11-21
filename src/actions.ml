@@ -304,4 +304,31 @@ let z'_rotate cube =
   f'_turn cube;
   s'_turn cube;
   b_turn cube
+
+let random_int_bound a b = 
+  let ret = ref 0 in
+  while !ret < a do 
+    ret := Random.int b
+  done;
+  !ret
+let random cube = 
+  let num_rotations = ref (random_int_bound 20 42) in 
+  while !num_rotations > 0 do 
+    num_rotations := !num_rotations - 1;
+    match Random.int 12 with
+    0 -> r_turn cube 
+    | 1 -> r'_turn cube
+    | 2 -> f_turn cube
+    | 3 -> f'_turn cube
+    | 4 -> u_turn cube
+    | 5 -> u'_turn cube
+    | 6 -> l_turn cube
+    | 7 -> l'_turn cube
+    | 8 -> d_turn cube
+    | 9 -> d'_turn cube
+    | 10 -> b_turn cube
+    | 11 -> b'_turn cube
+    | _ -> failwith "invalid"
+    
+  done
 (*let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]*)
