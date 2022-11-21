@@ -3,32 +3,52 @@ open Actions
 open Graphics
 
 let cube = ref cube_rep
-let counter = ref ~-1
-(* let next =
-       fun () ->
-           counter := !counter + 1;
-           !counter
-   let count_text () =
-   set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
-   Graphics.draw_string("Counter: " ^ string_of_int(next())) *)
 
-let next () =
-  counter := !counter + 1;
-  !counter
+let counter = ref ~-1
+(* let next = 
+    fun () -> 
+        counter := !counter + 1;
+        !counter
+let count_text () =
+set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
+Graphics.draw_string("Counter: " ^ string_of_int(next())) *)
+
+
+(* let next = 
+    fun () -> 
+        counter := !counter + 1;
+        !counter *)
 
 let ref_c = ref "Counter: "
+        
+let nextref = ref counter
+let draw_count count n= 
 
-let draw_count count =
-  set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
-  Graphics.draw_string !count
+set_color white;
+counter := !counter + 1;
+draw_rect 0 0 100 100;
+set_color white;
+fill_rect 0 0 350 350;
+set_color black;
+Graphics.moveto 0 0;
+set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
+ Graphics.draw_string(!count ^ string_of_int(!n));
+ Graphics.moveto 0 0
+ 
 
-(* let count = ref draw_count *)
-let () = draw_count ref_c
-let hap () = ref (Graphics.draw_string (string_of_int (next ()) ^ " "))
+
+ 
+ (* let count = ref draw_count *)
+(* let () = draw_count ref_c !(nextref) *)
+
+(* let hap() = ref (Graphics.draw_string(string_of_int(!nextref()) ^ " ")) *)
+
+
 
 let read_key () =
   while
-    !(hap ());
+  
+draw_count ref_c !nextref;    
     match read_key () with
     | 'q' ->
         close_graph ();
