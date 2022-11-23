@@ -6,20 +6,12 @@ open Actions
 
 type color = White | Red | Blue | Orange | Yellow | Green
  let white_face = [| White; White; White; White; White; White; White; White; White |]
- (* let red_face = [| Red; Red; Red; Red; Red; Red; Red; Red; Red |]   *)
+ let red_face = [| Red; Red; Red; Red; Red; Red; Red; Red; Red |]  
  let yellow_face = [| Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
- (* let blue_face = [| Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue |]  *)
- (* let orange_face = [| Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange |]   *)
- (* let green_face = [| Green; Green; Green; Green; Green; Green; Green; Green; Green |]   *)
- (* let base_cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]  *)
-let create_cube = 
-  let white_f = [| White; White; White; White; White; White; White; White; White |] in
-  let red_f = [| Red; Red; Red; Red; Red; Red; Red; Red; Red |] in
-  let blue_f = [| Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue |] in
-  let orange_f = [| Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange |] in
-  let yellow_f = [| Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |] in 
-  let green_f = [| Green; Green; Green; Green; Green; Green; Green; Green; Green |] in
-  [| red_f; yellow_f; blue_f; white_f; orange_f; green_f |]
+ let blue_face = [| Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue |] 
+ let orange_face = [| Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange |]  
+ let green_face = [| Green; Green; Green; Green; Green; Green; Green; Green; Green |]  
+ let base_cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |] 
 
 let cts = function
   White -> "White "
@@ -47,20 +39,20 @@ let cube_copy = function
   | _ -> failwith "invalid"
 
 let init_cube turn random= 
-  let return_cube = cube_copy create_cube in
+  let return_cube = cube_copy base_cube in
   randomize return_cube random; 
   turn return_cube;
   return_cube 
 
 let init_cube_two_turns turn1 turn2 random= 
-  let return_cube = cube_copy create_cube in
+  let return_cube = cube_copy base_cube in
   randomize return_cube random; 
   turn1 return_cube;
   turn2 return_cube; 
   return_cube 
 
 let check_undo turn1 turn2 random = 
-    let return_cube = cube_copy create_cube in
+    let return_cube = cube_copy base_cube in
     randomize return_cube random;
     let cube_dupe =  (return_cube) |> cube_copy in
     turn1 return_cube;
