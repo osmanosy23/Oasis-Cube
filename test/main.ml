@@ -5,13 +5,13 @@ open Cube
 open Actions
 
 type color = White | Red | Blue | Orange | Yellow | Green
- let white_face = [| White; White; White; White; White; White; White; White; White |]
- let red_face = [| Red; Red; Red; Red; Red; Red; Red; Red; Red |]  
- let yellow_face = [| Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
- let blue_face = [| Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue |] 
- let orange_face = [| Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange |]  
- let green_face = [| Green; Green; Green; Green; Green; Green; Green; Green; Green |]  
- let base_cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |] 
+let white_face = [| White; White; White; White; White; White; White; White; White |]
+let red_face = [| Red; Red; Red; Red; Red; Red; Red; Red; Red |]  
+let yellow_face = [| Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
+let blue_face = [| Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue; Blue |] 
+let orange_face = [| Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange; Orange |]  
+let green_face = [| Green; Green; Green; Green; Green; Green; Green; Green; Green |]  
+let base_cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |] 
 
 let cts = function
   White -> "White "
@@ -54,12 +54,22 @@ let init_cube_two_turns turn1 turn2 random=
 let check_undo turn1 turn2 random = 
     let return_cube = cube_copy base_cube in
     randomize return_cube random;
-    let cube_dupe =  (return_cube) |> cube_copy in
+    let cube_dupe =  return_cube|> cube_copy in
     turn1 return_cube;
     turn2 return_cube;
     print_string ("cube_dupe = "^ cube_to_string cube_dupe);
     print_string ("return cube = " ^ cube_to_string return_cube);
     return_cube  = cube_dupe
+    
+let check_undo_four_turns turn random = 
+  let return_cube = cube_copy base_cube in 
+  randomize return_cube random;
+  let cube_dupe = return_cube |> cube_copy in 
+  turn return_cube;
+  turn return_cube;
+  turn return_cube;
+  turn return_cube;
+  return_cube = cube_dupe
 
 let turn_tests (name : string) input1 input2  : test =
   name >:: fun _ -> assert_equal input1 input2
@@ -84,29 +94,52 @@ let u'_tests =
     turn_tests
       "one u turn on the cube that has made a u' turn should be equivalent default cube (i.e., the state that hasn't \
        changed)"
-       true (check_undo u'_turn u_turn 100); 
+       true (check_undo u'_turn u_turn 100);
+    turn_tests "four u' turns should return the cube to its original state" true (check_undo_four_turns u'_turn 100);  
   ]
 
-(* let u_red_face = [| Blue; Blue; Blue; Red; Red; Red; Red; Red; Red |]
-let u_u_red_face = [| Orange; Orange; Orange; Red; Red; Red; Red; Red; Red |]
-let u_green_face = [| Red; Red; Red; Green; Green; Green; Green; Green; Green |]
-let u_u_green_face = [| Blue; Blue; Blue; Green; Green; Green; Green; Green; Green |]
-let u_orange_face = [| Green; Green; Green; Orange; Orange; Orange; Orange; Orange; Orange |]
-let u_u_orange_face = [| Red; Red; Red; Orange; Orange; Orange; Orange; Orange; Orange |]
-let u_blue_face = [| Orange; Orange; Orange; Blue; Blue; Blue; Blue; Blue; Blue |]
-let u_u_blue_face = [| Green; Green; Green; Blue; Blue; Blue; Blue; Blue; Blue |]
+let u_red_face = [| Red; Red; Red; Red; Red; Red; Green; Green; Green |]
+let u_u_red_face = [| Red; Red; Red; Red; Red; Red; Orange; Orange; Orange |]
+let u_green_face = [| Green; Green; Green; Green; Green; Green; Orange; Orange; Orange; |]
+let u_u_green_face = [| Green; Green; Green; Green; Green; Green; Blue; Blue; Blue |]
+let u_orange_face = [| Orange; Orange; Orange; Orange; Orange; Orange; Blue; Blue; Blue |]
+let u_u_orange_face = [| Orange; Orange; Orange; Orange; Orange; Orange; Red; Red; Red |]
+let u_blue_face = [| Blue; Blue; Blue; Blue; Blue; Blue; Red; Red; Red |]
+let u_u_blue_face = [| Blue; Blue; Blue; Blue; Blue; Blue; Green; Green; Green |]
 let u_cube = [| u_red_face; yellow_face; u_blue_face; white_face; u_orange_face; u_green_face |]
 let u_u_cube = [| u_u_red_face; yellow_face; u_u_blue_face; white_face; u_u_orange_face; u_u_green_face |]
 
 let u_tests =
   [
-    turn_tests "testing one u turn on the default cube" u_cube (u_turn cube);
-    turn_tests "testing two u turns on the default cube" u_u_cube (u_turn u_cube);
+    turn_tests "testing one u turn on the default cube" u_cube (init_cube u_turn 0);
+    turn_tests "testing two u turns on the default cube" u_u_cube (init_cube_two_turns u_turn u_turn 0);
     turn_tests
       "one u' turn on the cube that has made a u turn should be equivalent default cube (i.e., the state that hasn't \
        changed)"
-      cube (u'_turn u_cube);
-  ] *)
+      true (check_undo u_turn u'_turn 1000);
+    turn_tests "four u turns should return the cube to its original state" true (check_undo_four_turns u_turn 100);  
+  ] 
 
-let suite = "test suite for Cube" >::: List.flatten [ u'_tests; ]
+  let f_yellow_face = [|Blue; Blue; Blue; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
+  let f_f_yellow_face = [| White; White; White; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
+  let f_green_face = [| Yellow; Green; Green; Yellow; Green; Green; Yellow; Green; Green; |]
+  let f_f_green_face = [| Blue; Green; Green; Blue; Green; Green; Blue; Green; Green; |]
+  let f_white_face = [| White; White; White; White; White; White; Green; Green; Green |]
+  let f_f_white_face = [| White; White; White; White; White; White; Yellow; Yellow; Yellow |]
+  let f_blue_face = [| Blue; Blue; White; Blue; Blue; White; Blue; Blue; White |]
+  let f_f_blue_face = [| Blue; Blue; Green; Blue; Blue; Green; Blue; Blue; Green |]
+  let f_cube = [| red_face; f_yellow_face; f_blue_face; f_white_face; orange_face; f_green_face |]
+  let f_f_cube = [| red_face; f_f_yellow_face; f_f_blue_face; f_f_white_face; orange_face; f_f_green_face |]
+  (*FIRST TWO F TURN TESTS DO NOT WORK FOR NOW WILL FIX LATER!*)
+  let f_tests =
+    [
+      turn_tests "testing one f turn on the default cube" f_cube (init_cube f_turn 0);
+      turn_tests "testing two f turns on the default cube" f_f_cube (init_cube_two_turns f_turn f_turn 0);
+      turn_tests
+        "one f' turn on the cube that has made a f turn should be equivalent default cube (i.e., the state that hasn't \
+         changed)"
+        true (check_undo f_turn f'_turn 1000);
+      turn_tests "four f turns should return the cube to its original state" true (check_undo_four_turns f_turn 100);  
+    ] 
+let suite = "test suite for Cube" >::: List.flatten [ u'_tests; u_tests; f_tests ]
 let _ = run_test_tt_main suite
