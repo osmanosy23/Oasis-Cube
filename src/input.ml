@@ -135,6 +135,14 @@ let read_key () =
             Graphics.set_color white;
             fill_rect 0 0 10000 10000;
             draw !cube
+        | '2' -> 
+            Graphics.set_color white;
+            fill_rect 0 0 10000 10000;
+            draw2 !cube
+        | '3' -> 
+         Graphics.set_color white;
+          fill_rect 0 0 10000 10000;
+         draw !cube
         | _ -> ());
 
         true

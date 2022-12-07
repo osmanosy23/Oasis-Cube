@@ -86,39 +86,33 @@ let draw_2dcube2 f x y =
   for j = 0 to 3 do
     set_cube_color f.(j);
     match j mod 2 with
-    | 0 -> fill_rect x ((j / 3 * 75) + y) 75 75
-    | 1 -> fill_rect (x + 75) ((j / 3 * 75) + y) 75 75
+    | 0 -> fill_rect x ((j / 2 * 75) + y) 75 75
+    | 1 -> fill_rect (x + 75) ((j / 2 * 75) + y) 75 75
     | _ -> failwith "invalid"
   done;
   (*the rest of the function draws the black lines separating the colors*)
   Graphics.set_color black;
-  fill_rect 275 125 7 675;
-  fill_rect 350 125 7 675;
-  fill_rect 425 125 7 675;
-  fill_rect 500 125 7 675;
+  fill_rect 275 200 7 450;
+  fill_rect 350 200 7 450;
+  fill_rect 425 200 7 450;
+  fill_rect 500 350 7 150; 
 
-  fill_rect 50 350 900 7;
-  fill_rect 50 425 900 7;
-  fill_rect 50 500 900 7;
-  fill_rect 50 575 900 7;
+  fill_rect 125 350 600 7;
+  fill_rect 125 425 600 7;
+  fill_rect 125 500 600 7;
+  fill_rect 275 575 150 7;
 
-  fill_rect 50 350 7 225;
-  fill_rect 125 350 7 225;
-  fill_rect 200 350 7 225;
+  fill_rect 125 350 7 150;
+  fill_rect 200 350 7 150;
 
-  fill_rect 575 350 7 225;
-  fill_rect 650 350 7 225;
-  fill_rect 725 350 7 225;
-  fill_rect 800 350 7 225;
-  fill_rect 875 350 7 225;
-  fill_rect 950 350 7 232;
+  fill_rect 575 350 7 150;
+  fill_rect 650 350 7 150;
+  fill_rect 725 350 7 157;
 
-  fill_rect 275 125 225 7;
-  fill_rect 275 200 225 7;
-  fill_rect 275 275 225 7;
-  fill_rect 275 650 225 7;
-  fill_rect 275 725 225 7;
-  fill_rect 275 800 232 7
+ 
+  fill_rect 275 200 150 7;
+  fill_rect 275 275 150 7;
+  fill_rect 275 650 157 7
 
 let draw cube =
   draw_2dcube cube.(4) 275 350;
@@ -130,15 +124,15 @@ let draw cube =
 
 let draw2 cube =
   draw_2dcube2 cube.(4) 275 350;
-  draw_2dcube2 cube.(0) 725 350;
-  draw_2dcube2 cube.(5) 50 350;
-  draw_2dcube2 cube.(2) 500 350;
-  draw_2dcube2 cube.(1) 275 575;
-  draw_2dcube2 cube.(3) 275 125
+  draw_2dcube2 cube.(0) 575 350;
+  draw_2dcube2 cube.(5) 125 350;
+  draw_2dcube2 cube.(2) 425 350;
+  draw_2dcube2 cube.(1) 275 500;
+  draw_2dcube2 cube.(3) 275 200
 (* set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
    Graphics.draw_string("Counter: 0") *)
 
-let () = draw2 cube_rep2
+let () = draw2 cube_rep2 
 
 (*
    Graphics.set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1" *)

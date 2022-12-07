@@ -30,4 +30,8 @@ val draw_2dcube : face -> int -> int -> unit
 (** [draw_2dcube face x y] draws a [face] of the Rubik's Cube center at [x, y] *)
 
 val draw : cube_type -> unit
-(** [draw_2dcube cube] the Rubik's Cube*)
+(** [draw cube] the 3x3 Rubik's Cube*)
+
+val draw2 : cube_type -> unit
+(** [draw2 cube] the 2x2 Rubik's Cube*)
+
