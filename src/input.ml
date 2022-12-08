@@ -35,28 +35,6 @@ let draw_count count n =
   set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
   Graphics.draw_string (!count ^ string_of_int !n);
   Graphics.moveto 0 0
-  (* let draw_buttons =
-    set_color purple;
-    fill_rect 521 259 60 38;
-    fill_rect 595 259 60 38;
-    fill_rect 669 259 60 38;
-    fill_rect 743 259 60 38;
-    fill_rect 817 259 60 38;
-    fill_rect 891 259 60 38;
-    set_color lblue;
-    fill_rect 521 207 60 38;
-    fill_rect 595 207 60 38;
-    fill_rect 669 207 60 38;
-    fill_rect 743 207 60 38;
-    fill_rect 817 207 60 38;
-    fill_rect 891 207 60 38;
-    set_color black;
-    set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
-    moveto 543 255;
-    draw_string "F";
-    moveto 537 203;
-    draw_string "F";
-    draw_prime 565 231 *)
 (* let count = ref draw_count *)
 (* let () = draw_count ref_c !(nextref) *)
 
