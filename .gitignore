@@ -1,3 +1,6 @@
+# assignment
+doc
+
 # ocaml
 *.cmo
 *.cma
@@ -7,4 +10,10 @@
 *.native
 *.byte
 _build
-_doc.public
+
+# temporary files
+*.swp
+*~
+\#*\#
+.DS_Store
+doc*/

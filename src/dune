@@ -1,3 +1,4 @@
 (library
  (name cube)
+ (public_name cube)
  (libraries lwt lwt.unix ANSITerminal graphics))
