@@ -1,7 +1,5 @@
-# assignment
 doc
 
-# ocaml
 *.cmo
 *.cma
 *.cmi
@@ -11,7 +9,6 @@ doc
 *.byte
 _build
 
-# temporary files
 *.swp
 *~
 \#*\#
