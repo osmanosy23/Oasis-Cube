@@ -131,39 +131,39 @@ let u_tests =
       undo_test "three u turns on a cube should be equivalent to one u' turn"  (check_prime_equality u_turn u'_turn 100)    
   ] 
 
-  let f_yellow_face = [|Blue; Blue; Blue; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
-  let f_f_yellow_face = [| White; White; White; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
-  let f_green_face = [| Yellow; Green; Green; Yellow; Green; Green; Yellow; Green; Green; |]
-  let f_f_green_face = [| Blue; Green; Green; Blue; Green; Green; Blue; Green; Green; |]
-  let f_white_face = [| White; White; White; White; White; White; Green; Green; Green |]
-  let f_f_white_face = [| White; White; White; White; White; White; Yellow; Yellow; Yellow |]
-  let f_blue_face = [| Blue; Blue; White; Blue; Blue; White; Blue; Blue; White |]
-  let f_f_blue_face = [| Blue; Blue; Green; Blue; Blue; Green; Blue; Blue; Green |]
-  let f_cube = [| orange_face; f_yellow_face; f_green_face; f_white_face; red_face; f_blue_face |]
-  let f_f_cube = [| orange_face; f_f_yellow_face; f_f_green_face; f_f_white_face; red_face; f_f_blue_face |]
+let f_yellow_face = [|Blue; Blue; Blue; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
+let f_f_yellow_face = [| White; White; White; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
+let f_green_face = [| Yellow; Green; Green; Yellow; Green; Green; Yellow; Green; Green; |]
+let f_f_green_face = [| Blue; Green; Green; Blue; Green; Green; Blue; Green; Green; |]
+let f_white_face = [| White; White; White; White; White; White; Green; Green; Green |]
+let f_f_white_face = [| White; White; White; White; White; White; Yellow; Yellow; Yellow |]
+let f_blue_face = [| Blue; Blue; White; Blue; Blue; White; Blue; Blue; White |]
+let f_f_blue_face = [| Blue; Blue; Green; Blue; Blue; Green; Blue; Blue; Green |]
+let f_cube = [| orange_face; f_yellow_face; f_green_face; f_white_face; red_face; f_blue_face |]
+let f_f_cube = [| orange_face; f_f_yellow_face; f_f_green_face; f_f_white_face; red_face; f_f_blue_face |]
  
-  let f_tests =
-    [
-      turn_test "testing one f turn on the default cube" f_cube (init_cube f_turn 0);
-      turn_test "testing two f turns on the default cube" f_f_cube (init_cube_two_turns f_turn f_turn 0);
-      undo_test
-        "one f' turn on the cube that has made a f turn should be equivalent default cube (i.e., the state that hasn't \
-         changed)"
-         (check_undo f_turn f'_turn 1000);
-      undo_test "four f turns should return the cube to its original state"  (check_undo_four_turns f_turn 100);
-      undo_test "three f turns on a cube should be equivalent to one f' turn"  (check_prime_equality f_turn f'_turn 100)  
-    ] 
+let f_tests =
+  [
+    turn_test "testing one f turn on the default cube" f_cube (init_cube f_turn 0);
+    turn_test "testing two f turns on the default cube" f_f_cube (init_cube_two_turns f_turn f_turn 0);
+    undo_test
+      "one f' turn on the cube that has made a f turn should be equivalent default cube (i.e., the state that hasn't \
+       changed)"
+       (check_undo f_turn f'_turn 1000);
+    undo_test "four f turns should return the cube to its original state"  (check_undo_four_turns f_turn 100);
+    undo_test "three f turns on a cube should be equivalent to one f' turn"  (check_prime_equality f_turn f'_turn 100)  
+  ] 
   
-  let f'_yellow_face = [|Green; Green; Green; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
-  let f'_f'_yellow_face = [| White; White; White; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
-  let f'_green_face = [| White; Green; Green; White; Green; Green; White; Green; Green; |]
-  let f'_f'_green_face = [| Blue; Green; Green; Blue; Green; Green; Blue; Green; Green; |]
-  let f'_white_face = [| White; White; White; White; White; White; Blue; Blue; Blue |]
-  let f'_f'_white_face = [| White; White; White; White; White; White; Yellow; Yellow; Yellow |]
-  let f'_blue_face = [| Blue; Blue; Yellow; Blue; Blue; Yellow; Blue; Blue; Yellow |]
-  let f'_f'_blue_face = [| Blue; Blue; Green; Blue; Blue; Green; Blue; Blue; Green |]
-  let f'_cube = [| orange_face; f'_yellow_face; f'_green_face; f'_white_face; red_face; f'_blue_face |]
-  let f'_f'_cube = [| orange_face; f'_f'_yellow_face; f'_f'_green_face; f'_f'_white_face; red_face; f'_f'_blue_face |]
+let f'_yellow_face = [|Green; Green; Green; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
+let f'_f'_yellow_face = [| White; White; White; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
+let f'_green_face = [| White; Green; Green; White; Green; Green; White; Green; Green; |]
+let f'_f'_green_face = [| Blue; Green; Green; Blue; Green; Green; Blue; Green; Green; |]
+let f'_white_face = [| White; White; White; White; White; White; Blue; Blue; Blue |]
+let f'_f'_white_face = [| White; White; White; White; White; White; Yellow; Yellow; Yellow |]
+let f'_blue_face = [| Blue; Blue; Yellow; Blue; Blue; Yellow; Blue; Blue; Yellow |]
+let f'_f'_blue_face = [| Blue; Blue; Green; Blue; Blue; Green; Blue; Blue; Green |]
+let f'_cube = [| orange_face; f'_yellow_face; f'_green_face; f'_white_face; red_face; f'_blue_face |]
+let f'_f'_cube = [| orange_face; f'_f'_yellow_face; f'_f'_green_face; f'_f'_white_face; red_face; f'_f'_blue_face |]
  
   let f'_tests =
     [
@@ -200,17 +200,16 @@ let d_tests =
       undo_test "three d turns on a cube should be equivalent to one d' turn"  (check_prime_equality d_turn d'_turn 100)
   ]
 
-  let d'_red_face = [| Green; Green; Green; Red; Red; Red; Red; Red; Red |]  
-  let d'_d'_red_face = [| Orange; Orange; Orange; Red; Red; Red; Red; Red; Red |]  
-  let d'_blue_face = [| Red; Red; Red; Blue; Blue; Blue; Blue; Blue; Blue |] 
-  let d'_d'_blue_face = [| Green; Green; Green; Blue; Blue; Blue; Blue; Blue; Blue |] 
-  let d'_orange_face = [| Blue; Blue; Blue; Orange; Orange; Orange; Orange; Orange; Orange |]  
-  let d'_d'_orange_face = [| Red; Red; Red; Orange; Orange; Orange; Orange; Orange; Orange |]  
-  let d'_green_face = [| Orange; Orange; Orange; Green; Green; Green; Green; Green; Green |]  
-  let d'_d'_green_face = [| Blue; Blue; Blue; Green; Green; Green; Green; Green; Green |]  
-  let d'_cube = [| d'_orange_face; yellow_face; d'_green_face; white_face; d'_red_face; d'_blue_face |] 
-  let d'_d'_cube = [| d'_d'_orange_face; yellow_face; d'_d'_green_face; white_face; d'_d'_red_face; d'_d'_blue_face |] 
-  
+let d'_red_face = [| Green; Green; Green; Red; Red; Red; Red; Red; Red |]  
+let d'_d'_red_face = [| Orange; Orange; Orange; Red; Red; Red; Red; Red; Red |]  
+let d'_blue_face = [| Red; Red; Red; Blue; Blue; Blue; Blue; Blue; Blue |] 
+let d'_d'_blue_face = [| Green; Green; Green; Blue; Blue; Blue; Blue; Blue; Blue |] 
+let d'_orange_face = [| Blue; Blue; Blue; Orange; Orange; Orange; Orange; Orange; Orange |]  
+let d'_d'_orange_face = [| Red; Red; Red; Orange; Orange; Orange; Orange; Orange; Orange |]  
+let d'_green_face = [| Orange; Orange; Orange; Green; Green; Green; Green; Green; Green |]  
+let d'_d'_green_face = [| Blue; Blue; Blue; Green; Green; Green; Green; Green; Green |]  
+let d'_cube = [| d'_orange_face; yellow_face; d'_green_face; white_face; d'_red_face; d'_blue_face |] 
+let d'_d'_cube = [| d'_d'_orange_face; yellow_face; d'_d'_green_face; white_face; d'_d'_red_face; d'_d'_blue_face |] 
 
 let d'_tests = 
   [

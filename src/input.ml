@@ -1,8 +1,9 @@
 open Cube_rep
 open Actions
 open Graphics
-
 let cube = ref cube_rep
+let purple = rgb 240 150 240 
+let lblue = rgb 157 190 250
 let counter = ref ~-1
 (* let next =
        fun () ->
@@ -19,6 +20,9 @@ let counter = ref ~-1
 
 let ref_c = ref "Counter: "
 let nextref = ref counter
+let draw_prime x y  = 
+    set_color black;
+    fill_rect x y 3 9
 
 let draw_count count n =
   set_color white;
@@ -31,7 +35,28 @@ let draw_count count n =
   set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
   Graphics.draw_string (!count ^ string_of_int !n);
   Graphics.moveto 0 0
-
+  (* let draw_buttons =
+    set_color purple;
+    fill_rect 521 259 60 38;
+    fill_rect 595 259 60 38;
+    fill_rect 669 259 60 38;
+    fill_rect 743 259 60 38;
+    fill_rect 817 259 60 38;
+    fill_rect 891 259 60 38;
+    set_color lblue;
+    fill_rect 521 207 60 38;
+    fill_rect 595 207 60 38;
+    fill_rect 669 207 60 38;
+    fill_rect 743 207 60 38;
+    fill_rect 817 207 60 38;
+    fill_rect 891 207 60 38;
+    set_color black;
+    set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
+    moveto 543 255;
+    draw_string "F";
+    moveto 537 203;
+    draw_string "F";
+    draw_prime 565 231 *)
 (* let count = ref draw_count *)
 (* let () = draw_count ref_c !(nextref) *)
 
@@ -40,6 +65,54 @@ let draw_count count n =
 let read_key () =
   while
     draw_count ref_c !nextref;
+    set_color purple;
+    fill_rect 521 259 60 38;
+    fill_rect 595 259 60 38;
+    fill_rect 669 259 60 38;
+    fill_rect 743 259 60 38;
+    fill_rect 817 259 60 38;
+    fill_rect 891 259 60 38;
+    set_color lblue;
+    fill_rect 521 207 60 38;
+    fill_rect 595 207 60 38;
+    fill_rect 669 207 60 38;
+    fill_rect 743 207 60 38;
+    fill_rect 817 207 60 38;
+    fill_rect 891 207 60 38;
+    set_color black;
+    set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
+    moveto 543 255;
+    draw_string "F";
+    moveto 616 255;
+    draw_string "R";
+    moveto 690 255;
+    draw_string "U";
+    moveto 763 255;
+    draw_string "B";
+    moveto 839 255;
+    draw_string "L";
+    moveto 911 255;
+    draw_string "D";
+
+    moveto 537 203;
+    draw_string "F";
+    moveto 611 203;
+    draw_string "R";
+    moveto 685 203;
+    draw_string "U";
+    moveto 759 203;
+    draw_string "B";
+    moveto 834 203;
+    draw_string "L";
+    moveto 907 203;
+    draw_string "D";
+    draw_prime 566 231;
+    draw_prime 640 231;
+    draw_prime 714 231;
+    draw_prime 788 231;
+    draw_prime 861 231;
+    draw_prime 936 231;
+
     match read_key () with
     | 'q' ->
         close_graph ();
