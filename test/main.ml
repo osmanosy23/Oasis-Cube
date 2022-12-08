@@ -69,6 +69,16 @@ let check_undo_four_turns turn random =
   turn return_cube;
   return_cube = cube_dupe
 
+let check_prime_equality turn prime_turn random = 
+  let default_cube = cube_copy base_cube in 
+  randomize default_cube random;
+  let cube_dupe = default_cube |> cube_copy in 
+  turn default_cube; 
+  turn default_cube; 
+  turn default_cube; 
+  prime_turn cube_dupe;
+  default_cube = cube_dupe
+
 let turn_test (name : string) input1 input2  : test =
   name >:: fun _ -> assert_equal input1 input2 ~printer:cube_to_string
 let undo_test (name : string) input  : test =
@@ -94,7 +104,8 @@ let u'_tests =
       "one u turn on the cube that has made a u' turn should be equivalent default cube (i.e., the state that hasn't \
        changed)"
         (check_undo u'_turn u_turn 100);
-      undo_test "four u' turns should return the cube to its original state"  (check_undo_four_turns u'_turn 100);  
+      undo_test "four u' turns should return the cube to its original state"  (check_undo_four_turns u'_turn 100);
+      undo_test "three u' turns on a cube should be equivalent to one u turn"  (check_prime_equality u'_turn u_turn 100)  
   ]
 
 let u_red_face = [| Red; Red; Red; Red; Red; Red; Green; Green; Green |]
@@ -116,7 +127,8 @@ let u_tests =
       "one u' turn on the cube that has made a u turn should be equivalent default cube (i.e., the state that hasn't \
        changed)"
        (check_undo u_turn u'_turn 1000);
-      undo_test "four u turns should return the cube to its original state"  (check_undo_four_turns u_turn 100);  
+      undo_test "four u turns should return the cube to its original state"  (check_undo_four_turns u_turn 100);
+      undo_test "three u turns on a cube should be equivalent to one u' turn"  (check_prime_equality u_turn u'_turn 100)    
   ] 
 
   let f_yellow_face = [|Blue; Blue; Blue; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
@@ -138,7 +150,8 @@ let u_tests =
         "one f' turn on the cube that has made a f turn should be equivalent default cube (i.e., the state that hasn't \
          changed)"
          (check_undo f_turn f'_turn 1000);
-      undo_test "four f turns should return the cube to its original state"  (check_undo_four_turns f_turn 100);  
+      undo_test "four f turns should return the cube to its original state"  (check_undo_four_turns f_turn 100);
+      undo_test "three f turns on a cube should be equivalent to one f' turn"  (check_prime_equality f_turn f'_turn 100)  
     ] 
   
   let f'_yellow_face = [|Green; Green; Green; Yellow; Yellow; Yellow; Yellow; Yellow; Yellow |]
@@ -160,7 +173,8 @@ let u_tests =
         "one f turn on the cube that has made a f' turn should be equivalent default cube (i.e., the state that hasn't \
          changed)"
          (check_undo f'_turn f_turn 1000);
-      undo_test "four f' turns should return the cube to its original state"  (check_undo_four_turns f'_turn 100);  
+      undo_test "four f' turns should return the cube to its original state"  (check_undo_four_turns f'_turn 100);
+      undo_test "three f' turns on a cube should be equivalent to one f turn"  (check_prime_equality f'_turn f_turn 100)  
     ] 
     
 let d_red_face = [| Blue; Blue; Blue; Red; Red; Red; Red; Red; Red |]  
@@ -183,6 +197,7 @@ let d_tests =
          changed)"
          (check_undo d'_turn d_turn 1000);
       undo_test "four d turns should return the cube to its original state"  (check_undo_four_turns d_turn 100);
+      undo_test "three d turns on a cube should be equivalent to one d' turn"  (check_prime_equality d_turn d'_turn 100)
   ]
 
   let d'_red_face = [| Green; Green; Green; Red; Red; Red; Red; Red; Red |]  
@@ -206,6 +221,7 @@ let d'_tests =
          changed)"
          (check_undo d_turn d'_turn 1000);
       undo_test "four d' turns should return the cube to its original state"  (check_undo_four_turns d'_turn 100);
+      undo_test "three d' turns on a cube should be equivalent to one d turn"  (check_prime_equality d'_turn d_turn 100)
   ]
   
 let b_white_face = [| Blue; Blue; Blue; White; White; White; White; White; White |]
@@ -228,6 +244,7 @@ let b_tests =
          changed)"
          (check_undo b'_turn b_turn 1000);
       undo_test "four b turns should return the cube to its original state"  (check_undo_four_turns b_turn 100);
+      undo_test "three b turns on a cube should be equivalent to one b' turn"  (check_prime_equality b_turn b'_turn 100)
   ]
 
 let b'_white_face = [| Green; Green; Green; White; White; White; White; White; White |]
@@ -250,6 +267,7 @@ let b'_tests =
          changed)"
          (check_undo b_turn b'_turn 1000);
       undo_test "four b' turns should return the cube to its original state"  (check_undo_four_turns b'_turn 100);
+      undo_test "three b' turns on a cube should be equivalent to one b turn"  (check_prime_equality b'_turn b_turn 100)
   ]
 
 let r_white_face = [| White; White; Orange; White; White; Orange; White; White; Orange |]
@@ -272,6 +290,7 @@ let r_tests =
          changed)"
          (check_undo r'_turn r_turn 1000);
       undo_test "four r turns should return the cube to its original state"  (check_undo_four_turns r_turn 100);
+      undo_test "three r turns on a cube should be equivalent to one r' turn"  (check_prime_equality r_turn r'_turn 100)
   ]
 
   let r'_white_face = [| White; White; Red; White; White; Red; White; White; Red |]
@@ -294,6 +313,7 @@ let r_tests =
            changed)"
            (check_undo r_turn r'_turn 1000);
         undo_test "four r' turns should return the cube to its original state"  (check_undo_four_turns r'_turn 100);
+        undo_test "three r' turns on a cube should be equivalent to one r turn"  (check_prime_equality r'_turn r_turn 100)
     ]
 
 let l_white_face = [| Red; White; White; Red; White; White; Red; White; White |]
@@ -316,6 +336,7 @@ let l_tests =
          changed)"
          (check_undo l'_turn l_turn 1000);
       undo_test "four l turns should return the cube to its original state"  (check_undo_four_turns l_turn 100);
+      undo_test "three l turns on a cube should be equivalent to one l' turn"  (check_prime_equality l_turn l'_turn 100)
   ]
 
 let l'_white_face = [| Orange; White; White; Orange; White; White; Orange; White; White |]
@@ -338,6 +359,7 @@ let l'_tests =
          changed)"
          (check_undo l_turn l'_turn 1000);
       undo_test "four l' turns should return the cube to its original state"  (check_undo_four_turns l'_turn 100);
+      undo_test "three l' turns on a cube should be equivalent to one l turn"  (check_prime_equality l'_turn l_turn 100)
   ]
 
 let m_white_face = [| White; Red; White; White; Red; White; White; Red; White |]
@@ -360,6 +382,7 @@ let m_tests =
          changed)"
          (check_undo m'_turn m_turn 1000);
       undo_test "four m turns should return the cube to its original state"  (check_undo_four_turns m_turn 100);
+      undo_test "three m turns on a cube should be equivalent to one m' turn"  (check_prime_equality m_turn m'_turn 100)
   ]
 
 let m'_white_face = [| White; Orange; White; White; Orange; White; White; Orange; White |]
@@ -382,6 +405,7 @@ let m'_tests =
          changed)"
           (check_undo m_turn m'_turn 1000);
       undo_test "four m' turns should return the cube to its original state"  (check_undo_four_turns m'_turn 100);
+      undo_test "three m' turns on a cube should be equivalent to one m turn"  (check_prime_equality m'_turn m_turn 100)
   ]
 
 let e_red_face = [| Red; Red; Red; Blue; Blue; Blue; Red; Red; Red |]  
@@ -404,6 +428,7 @@ let e_tests =
          changed)"
          (check_undo e'_turn e_turn 1000);
       undo_test "four e turns should return the cube to its original state"  (check_undo_four_turns e_turn 100);
+      undo_test "three e turns on a cube should be equivalent to one e' turn"  (check_prime_equality e_turn e'_turn 100)
   ]
 
 let e'_red_face = [| Red; Red; Red; Green; Green; Green; Red; Red; Red |]  
@@ -426,6 +451,7 @@ let e'_tests =
          changed)"
          (check_undo e_turn e'_turn 1000);
       undo_test "four e' turns should return the cube to its original state"  (check_undo_four_turns e'_turn 100);
+      undo_test "three e' turns on a cube should be equivalent to one e turn"  (check_prime_equality e'_turn e_turn 100)
   ]
 
 let s_white_face = [| White; White; White; Green; Green; Green; White; White; White |]
@@ -448,6 +474,7 @@ let s_tests =
          changed)"
          (check_undo s'_turn s_turn 1000);
       undo_test "four s turns should return the cube to its original state"  (check_undo_four_turns s_turn 100);
+      undo_test "three s turns on a cube should be equivalent to one s' turn"  (check_prime_equality s_turn s'_turn 100)
   ]
 
 let s'_white_face = [| White; White; White; Blue; Blue; Blue; White; White; White |]
@@ -470,6 +497,7 @@ let s'_tests =
          changed)"
          (check_undo s_turn s'_turn 1000);
       undo_test "four s' turns should return the cube to its original state"  (check_undo_four_turns s'_turn 100);
+      undo_test "three s' turns on a cube should be equivalent to one s turn"  (check_prime_equality s'_turn s_turn 100)
   ]
 
 let y_cube = [| blue_face; yellow_face; orange_face; white_face; green_face; red_face |] 
@@ -484,6 +512,7 @@ let y_tests =
          changed)"
          (check_undo y'_rotate y_rotate 1000);
       undo_test "four y rotates should return the cube to its original state"  (check_undo_four_turns y_rotate 100);
+      undo_test "three y rotates on a cube should be equivalent to one y' rotate"  (check_prime_equality y_rotate y'_rotate 100)
   ]
 
 let y'_cube = [| green_face; yellow_face; red_face; white_face; blue_face; orange_face |] 
@@ -498,6 +527,7 @@ let y'_tests =
          changed)"
          (check_undo y_rotate y'_rotate 1000);
       undo_test "four y' rotates should return the cube to its original state"  (check_undo_four_turns y'_rotate 100);
+      undo_test "three y' rotates on a cube should be equivalent to one y rotate"  (check_prime_equality y'_rotate y_rotate 100)
   ]
 
 let x_cube = [| yellow_face; red_face; green_face; orange_face; white_face; blue_face |] 
@@ -512,6 +542,7 @@ let x_tests =
          changed)"
          (check_undo x'_rotate x_rotate 1000);
       undo_test "four x rotates should return the cube to its original state"  (check_undo_four_turns x_rotate 100);
+      undo_test "three x rotates on a cube should be equivalent to one x' rotate"  (check_prime_equality x_rotate x'_rotate 100)
   ]
 
 let x'_cube = [| white_face; orange_face; green_face; red_face; yellow_face; blue_face |] 
@@ -526,6 +557,7 @@ let x'_tests =
          changed)"
          (check_undo x_rotate x'_rotate 1000);
       undo_test "four x' rotates should return the cube to its original state"  (check_undo_four_turns x'_rotate 100);
+      undo_test "three x' rotates on a cube should be equivalent to one x rotate"  (check_prime_equality x'_rotate x_rotate 100)
   ]
  
 let z_cube = [| orange_face; blue_face; yellow_face; green_face; red_face; white_face |] 
@@ -540,6 +572,7 @@ let z_tests =
          changed)"
          (check_undo z'_rotate z_rotate 1000);
       undo_test "four z rotates should return the cube to its original state"  (check_undo_four_turns z_rotate 100);
+      undo_test "three z rotates on a cube should be equivalent to one z' rotate"  (check_prime_equality z_rotate z'_rotate 100)
   ]
 
 let z'_cube = [| orange_face; green_face; white_face; blue_face; red_face; yellow_face |] 
@@ -554,6 +587,7 @@ let z'_tests =
          changed)"
          (check_undo z_rotate z'_rotate 1000);
       undo_test "four z' rotates should return the cube to its original state"  (check_undo_four_turns z'_rotate 100);
+      undo_test "three z' rotates on a cube should be equivalent to one z rotate"  (check_prime_equality z'_rotate z_rotate 100)
   ]
 
 let suite = "test suite for Cube" >::: List.flatten [ u'_tests; u_tests; f_tests; f'_tests; d_tests; d'_tests; b_tests; b'_tests;
