@@ -79,32 +79,37 @@ let draw_count count n =
 
 let eval_turn turn = 
     turn !cube;
-    draw !cube;
+    draw_3d !cube;
     set_color !background_color;
     fill_rect 0 0 1000 100;
     counter := !counter + 1
 let eval_solve s = 
     cube := s (); 
-    draw !cube;
+    draw_3d !cube;
     set_color !background_color;
     fill_rect 0 0 1000 100;
     counter := 0
 let eval_random n = 
     randomize !cube n;
-    draw !cube;
+    draw_3d !cube;
     set_color !background_color;
     fill_rect 0 0 1000 100;
     counter := 0
 let check_click x y xup xlo yup ylo turn=
     if (xup >= x) && (x >= xlo) && (yup >= y)&& (y >= ylo) then eval_turn turn
+let change_view view dim =
+    set_color !background_color;
+    fill_rect 0 0 1000000 1000000;
+    if dim then is_3x3 := true else is_3x3 := false;
+    view !cube;
+    draw_buttons purple
 let read_key =
     draw_buttons purple;
          
 while true do 
     draw_count ref_c !nextref;
     if button_down () then click := true 
-        (* let x = Graphics.wait_next_event [Graphics.Button_up] in  
-        if not x.button then eval_turn m_turn; *)
+
     else
     try 
       let s = Graphics.wait_next_event [Button_up; Graphics.Poll] 
@@ -153,19 +158,9 @@ while true do
                 fill_rect 0 0 1000000 1000000;
                 if !is_3x3 then draw !cube else draw2 !cube;
                 draw_buttons purple          
-            | '2' -> 
-                set_color !background_color;
-                fill_rect 0 0 1000000 1000000;
-                is_3x3 := false;
-                draw2 !cube;
-                draw_buttons purple
-            
-            | '3' -> 
-                set_color !background_color;
-                fill_rect 0 0 1000000 1000000;
-                is_3x3 := true;
-                draw !cube;
-                draw_buttons purple
+            | '2' -> change_view draw2 false
+            | '3' -> change_view draw true
+            | '4' -> change_view draw true
             | _ -> ()); 
             else if (not s.button) && !click then
                 match s.mouse_x,s.mouse_y with 
