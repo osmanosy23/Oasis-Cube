@@ -7,12 +7,13 @@ let is_3x3 = ref true
 let purple = rgb 240 150 240 
 let lblue = rgb 157 190 250
 let lred = rgb 255 150 150
+let lgreen = rgb 146 250 146
 let counter = ref 0
 let ref_c = "Counter: "
 let nextref = ref counter
 let click = ref false
 let draw_prime x y  = 
-if !background_color = black then set_color white else set_color black;
+    set_color black;
     fill_rect x y 3 9
 let draw_buttons color = set_color color;
   fill_rect 521 259 60 38;
@@ -28,9 +29,11 @@ let draw_buttons color = set_color color;
   fill_rect 743 207 60 38;
   fill_rect 817 207 60 38;
   fill_rect 891 207 60 38;
+  set_color lgreen;
+  fill_rect 669 103 134 38;
   set_color lred;
-  fill_rect 669 155 134 38;
-  if !background_color = black then set_color white else set_color black;
+  fill_rect 620 155 232 38;
+  set_color black;
   set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
   moveto 543 255;
   draw_string "F";
@@ -56,8 +59,10 @@ let draw_buttons color = set_color color;
   draw_string "L";
   moveto 907 203;
   draw_string "D";
-  moveto 675 151;
+  moveto 675 99;
   draw_string "SOLVE";
+  moveto 626 151;
+  draw_string "RANDOMIZE";
   draw_prime 566 231;
   draw_prime 640 231;
   draw_prime 714 231;
@@ -80,6 +85,12 @@ let eval_turn turn =
     counter := !counter + 1
 let eval_solve s = 
     cube := s (); 
+    draw !cube;
+    set_color !background_color;
+    fill_rect 0 0 1000 100;
+    counter := 0
+let eval_random n = 
+    randomize !cube n;
     draw !cube;
     set_color !background_color;
     fill_rect 0 0 1000 100;
@@ -127,12 +138,8 @@ while true do
             | 'z' -> eval_turn z_rotate
             | 'Z' -> eval_turn z'_rotate
             | '.' -> eval_solve solve
-            | '1' ->
-                randomize !cube 1;
-                draw !cube
-            | '\\' ->
-                randomize !cube 100;
-                draw !cube
+            | '1' -> eval_random 1
+            | '\\' -> eval_random 100
             | ',' ->
                 background_color := black;
                 set_color !background_color;
@@ -175,9 +182,11 @@ while true do
                  check_click a b 803 743 245 207 b'_turn;
                  check_click a b 877 817 245 207 l'_turn;
                  check_click a b 951 891 245 207 d'_turn;
-                 if (803 >= a) && (a >= 669) && (193 >= b)&& (b >= 155) then
-                 eval_solve solve ;
+                 if (803 >= a) && (a >= 669) && (141 >= b)&& (b >= 103) then
+                 eval_solve solve;
+                 if (852 >= a) && (a >= 620) && (193 >= b)&& (b >= 155) then
+                    eval_random 100;
                  click := false 
     with 
-       _ -> failwith "invalid"
+       _ -> failwith "Window closed"
   done
