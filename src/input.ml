@@ -160,7 +160,7 @@ while true do
                 draw_buttons purple          
             | '2' -> change_view draw2 false
             | '3' -> change_view draw true
-            | '4' -> change_view draw true
+            | '4' -> change_view draw_3d true
             | _ -> ()); 
             else if (not s.button) && !click then
                 match s.mouse_x,s.mouse_y with 
