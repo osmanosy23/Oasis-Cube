@@ -7,9 +7,9 @@ let is_3x3 = ref true
 let purple = rgb 240 150 240 
 let lblue = rgb 157 190 250
 let counter = ref 0
-
 let ref_c = "Counter: "
 let nextref = ref counter
+let click = ref false
 let draw_prime x y  = 
 if !background_color = black then set_color white else set_color black;
     fill_rect x y 3 9
@@ -73,14 +73,19 @@ let eval_turn turn =
     set_color !background_color;
     fill_rect 0 0 1000 100;
     counter := !counter + 1
-
+let check_click x y xup xlo yup ylo turn=
+    if (xup >= x) && (x >= xlo) && (yup >= y)&& (y >= ylo) then eval_turn turn
 let read_key =
     draw_buttons purple;
          
 while true do 
     draw_count ref_c !nextref;
+    if button_down () then click := true 
+        (* let x = Graphics.wait_next_event [Graphics.Button_up] in  
+        if not x.button then eval_turn m_turn; *)
+    else
     try 
-      let s = Graphics.wait_next_event [Graphics.Button_up; Graphics.Poll] 
+      let s = Graphics.wait_next_event [Button_up; Graphics.Poll] 
       in if s.Graphics.keypressed then match read_key () with
         | 'q' ->
             close_graph ();
@@ -149,8 +154,22 @@ while true do
                 draw !cube;
                 draw_buttons purple
             | _ -> ()); 
-         else if s.button 
-              then eval_turn f'_turn; 
+            else if (not s.button) && !click then
+                match s.mouse_x,s.mouse_y with 
+                a,b -> 
+                 check_click a b 581 521 297 259 f_turn;
+                 check_click a b 655 595 297 259 r_turn;
+                 check_click a b 729 669 297 259 u_turn;
+                 check_click a b 803 743 297 259 b_turn;
+                 check_click a b 877 817 297 259 l_turn;
+                 check_click a b 951 891 297 259 d_turn;
+                 check_click a b 581 521 245 207 f'_turn;
+                 check_click a b 655 595 245 207 r'_turn;
+                 check_click a b 729 669 245 207 u'_turn;
+                 check_click a b 803 743 245 207 b'_turn;
+                 check_click a b 877 817 245 207 l'_turn;
+                 check_click a b 951 891 245 207 d'_turn;   
+                 click := false 
     with 
        _ -> failwith "invalid"
   done
