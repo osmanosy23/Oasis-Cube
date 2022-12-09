@@ -6,6 +6,7 @@ let background_color = ref white
 let is_3x3 = ref true
 let purple = rgb 240 150 240 
 let lblue = rgb 157 190 250
+let lred = rgb 255 150 150
 let counter = ref 0
 let ref_c = "Counter: "
 let nextref = ref counter
@@ -27,6 +28,8 @@ let draw_buttons color = set_color color;
   fill_rect 743 207 60 38;
   fill_rect 817 207 60 38;
   fill_rect 891 207 60 38;
+  set_color lred;
+  fill_rect 669 155 134 38;
   if !background_color = black then set_color white else set_color black;
   set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
   moveto 543 255;
@@ -53,6 +56,8 @@ let draw_buttons color = set_color color;
   draw_string "L";
   moveto 907 203;
   draw_string "D";
+  moveto 675 151;
+  draw_string "SOLVE";
   draw_prime 566 231;
   draw_prime 640 231;
   draw_prime 714 231;
@@ -73,6 +78,12 @@ let eval_turn turn =
     set_color !background_color;
     fill_rect 0 0 1000 100;
     counter := !counter + 1
+let eval_solve s = 
+    cube := s (); 
+    draw !cube;
+    set_color !background_color;
+    fill_rect 0 0 1000 100;
+    counter := 0
 let check_click x y xup xlo yup ylo turn=
     if (xup >= x) && (x >= xlo) && (yup >= y)&& (y >= ylo) then eval_turn turn
 let read_key =
@@ -115,12 +126,7 @@ while true do
             | 'Y' -> eval_turn y'_rotate
             | 'z' -> eval_turn z_rotate
             | 'Z' -> eval_turn z'_rotate
-            | '.' ->
-                cube := solve ();
-                draw !cube;
-                set_color !background_color;
-                fill_rect 0 0 1000 100;
-                counter := 0
+            | '.' -> eval_solve solve
             | '1' ->
                 randomize !cube 1;
                 draw !cube
@@ -168,7 +174,9 @@ while true do
                  check_click a b 729 669 245 207 u'_turn;
                  check_click a b 803 743 245 207 b'_turn;
                  check_click a b 877 817 245 207 l'_turn;
-                 check_click a b 951 891 245 207 d'_turn;   
+                 check_click a b 951 891 245 207 d'_turn;
+                 if (803 >= a) && (a >= 669) && (193 >= b)&& (b >= 155) then
+                 eval_solve solve ;
                  click := false 
     with 
        _ -> failwith "invalid"
