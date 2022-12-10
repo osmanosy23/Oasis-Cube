@@ -26,7 +26,7 @@ let darkmode bkgrnd =
     moveto 111 151;
     set_color black; 
     draw_string "DARK";
-  | 0x000000 -> fill_rect 94 155 130 38;
+  | 0x323232 -> fill_rect 94 155 130 38;
     moveto 98 151;
     set_color black;  
     draw_string "LIGHT";
@@ -108,7 +108,7 @@ let draw_buttons color =
   draw_prime 936 231
 
 let draw_count count n =
-  if !background_color = black then set_color white else set_color black;
+  if !background_color = 0x323232 then set_color white else set_color black;
   Graphics.moveto 4 2;
   set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
   Graphics.draw_string (count ^ string_of_int !n);
@@ -204,8 +204,8 @@ let change_view is3x3 is3d=
 
 let check_dark_click x y bkgrnd =
   match bkgrnd with 
-  0xFFFFFF -> if 210 >= x && x >= 108 && 500 >= y && y >= 155 then change_background black
-  | 0x000000 -> if 224 >= x && x >= 94 && 193 >= y && y >= 155 then change_background white
+  0xFFFFFF -> if 210 >= x && x >= 108 && 500 >= y && y >= 155 then change_background 0x323232
+  | 0x323232 -> if 224 >= x && x >= 94 && 193 >= y && y >= 155 then change_background white
   | _ -> ()
 
 let read_key =
@@ -248,7 +248,7 @@ let read_key =
               | '.' -> eval_solve !is_3x3
               | '1' -> eval_random 1 !is_3x3
               | '\\' -> eval_random 100 !is_3x3
-              | ',' -> change_background black
+              | ',' -> change_background 0x323232
               | '<' -> change_background white
               | '2' -> change_view  false false
               | '3' -> change_view  true false
