@@ -203,7 +203,7 @@ let change_background color =
 
 let check_dark_click x y bkgrnd =
   match bkgrnd with
-  | 0xFFFFFF -> if 210 >= x && x >= 108 && 500 >= y && y >= 155 then change_background 0x323232
+  | 0xFFFFFF -> if 210 >= x && x >= 108 && 193 >= y && y >= 155 then change_background 0x323232
   | 0x323232 -> if 224 >= x && x >= 94 && 193 >= y && y >= 155 then change_background white
   | _ -> ()
 
