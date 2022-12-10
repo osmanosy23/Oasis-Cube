@@ -85,7 +85,7 @@ let draw_count count n =
   Graphics.draw_string (count ^ string_of_int !n);
   Graphics.moveto 0 0
 
-let eval_turn turn3 turn2  =
+let eval_turn turn3 turn2 valid =
   match !is_3x3 with
   | true ->
       turn3 !cube;
@@ -98,7 +98,7 @@ let eval_turn turn3 turn2  =
       draw2 !cube2;
       set_color !background_color;
       fill_rect 0 0 1000 100;
-      counter := !counter + 1
+      if valid then counter := !counter + 1 
 
 let eval_solve = function
   | true ->
@@ -129,7 +129,7 @@ let eval_random n dim =
   counter := 0
 
 let check_click x y xup xlo yup ylo turn3 turn2 = 
-  if xup >= x && x >= xlo && yup >= y && y >= ylo then eval_turn turn3 turn2
+  if xup >= x && x >= xlo && yup >= y && y >= ylo then eval_turn turn3 turn2 true
 
 let change_view (view : cube_type -> unit) is3x3 is3d=
   set_color !background_color;
@@ -161,30 +161,30 @@ let read_key =
           | 'q' -> close_graph ()
           | c -> (
               match c with
-              | 'u' -> eval_turn u_turn u_turn2 
-              | 'U' -> eval_turn u'_turn u'_turn2 
-              | 'd' -> eval_turn d_turn d_turn2
-              | 'D' -> eval_turn d'_turn d'_turn2
-              | 'b' -> eval_turn b_turn b_turn2
-              | 'B' -> eval_turn b'_turn  b'_turn2
-              | 'f' -> eval_turn f_turn  f_turn2
-              | 'F' -> eval_turn f'_turn  f'_turn2
-              | 'r' -> eval_turn r_turn  r_turn2
-              | 'R' -> eval_turn r'_turn  r'_turn2
-              | 'l' -> eval_turn l_turn  l_turn2 
-              | 'L' -> eval_turn l'_turn  l'_turn2 
-              | 'm' -> eval_turn m_turn (fun _ -> ()) 
-              | 'M' -> eval_turn m'_turn (fun _ -> ())
-              | 'e' -> eval_turn e_turn  (fun _ -> ()) 
-              | 'E' -> eval_turn e'_turn  (fun _ -> ()) 
-              | 's' -> eval_turn s_turn  (fun _ -> ()) 
-              | 'S' -> eval_turn s'_turn (fun _ -> ())
-              | 'x' -> eval_turn x_rotate x_rotate2
-              | 'X' -> eval_turn x'_rotate x'_rotate2
-              | 'y' -> eval_turn y_rotate y_rotate2
-              | 'Y' -> eval_turn y'_rotate y'_rotate2 
-              | 'z' -> eval_turn z_rotate z_rotate2
-              | 'Z' -> eval_turn z'_rotate z'_rotate 
+              | 'u' -> eval_turn u_turn u_turn2 true
+              | 'U' -> eval_turn u'_turn u'_turn2 true
+              | 'd' -> eval_turn d_turn d_turn2 true
+              | 'D' -> eval_turn d'_turn d'_turn2 true
+              | 'b' -> eval_turn b_turn b_turn2 true
+              | 'B' -> eval_turn b'_turn  b'_turn2 true
+              | 'f' -> eval_turn f_turn  f_turn2 true
+              | 'F' -> eval_turn f'_turn  f'_turn2 true
+              | 'r' -> eval_turn r_turn  r_turn2 true
+              | 'R' -> eval_turn r'_turn  r'_turn2 true
+              | 'l' -> eval_turn l_turn  l_turn2 true 
+              | 'L' -> eval_turn l'_turn  l'_turn2 true 
+              | 'm' -> eval_turn  m_turn (fun _ -> ()) false 
+              | 'M' -> eval_turn m'_turn (fun _ -> ()) false
+              | 'e' -> eval_turn e_turn  (fun _ -> ()) false 
+              | 'E' -> eval_turn e'_turn  (fun _ -> ()) false 
+              | 's' -> eval_turn s_turn  (fun _ -> ()) false 
+              | 'S' -> eval_turn s'_turn (fun _ -> ()) false
+              | 'x' -> eval_turn x_rotate x_rotate2 true
+              | 'X' -> eval_turn x'_rotate x'_rotate2 true
+              | 'y' -> eval_turn y_rotate y_rotate2 true
+              | 'Y' -> eval_turn y'_rotate y'_rotate2 true 
+              | 'z' -> eval_turn z_rotate z_rotate2 true
+              | 'Z' -> eval_turn z'_rotate z'_rotate true 
               | '.' -> eval_solve !is_3x3
               | '1' -> eval_random 1 !is_3x3
               | '\\' -> eval_random 100 !is_3x3
