@@ -71,8 +71,8 @@ let draw_2dcube2 f x y =
 let make_poly_array x y = [| (x, y); (x + 53, y + 53); (x + 128, y + 53); (x + 75, y) |]
 let make_poly_array2 x y = [| (x, y); (x, y + 75); (x + 53, y + 128); (x + 53, y + 53) |]
 
-let match_j x = function
-  | 0 -> x
+let match_x x = function
+    0 -> x
   | 1 -> x + 75
   | 2 -> x + 150
   | 3 -> x + 53
@@ -83,8 +83,8 @@ let match_j x = function
   | 8 -> x + 256
   | _ -> x
 
-let match_i y = function
-  | 0 -> y
+let match_y y = function
+    0 -> y
   | 1 -> y + 53
   | 2 -> y + 106
   | 3 -> y + 75
@@ -97,11 +97,9 @@ let match_i y = function
 
 let draw_angled_top_face f x y =
   set_line_width 7;
-  let xpos = ref x in
   for j = 0 to 8 do
     set_cube_color f.(j);
-    xpos := match_j x j;
-    let poly_array = make_poly_array !xpos ((j / 3 * 53) + y) in
+    let poly_array = make_poly_array (match_x x j) ((j / 3 * 53) + y) in
     fill_poly poly_array;
     set_color black;
     draw_poly_line poly_array
@@ -110,17 +108,52 @@ let draw_angled_top_face f x y =
   lineto 500 575
 
 let draw_angled_side_face f x y =
-  let ypos = ref x in
   for j = 0 to 8 do
     set_cube_color f.(j);
-    ypos := match_i y j;
-    let poly_array = make_poly_array2 ((j mod 3 * 53) + x) !ypos in
+    let poly_array = make_poly_array2 ((j mod 3 * 53) + x) (match_y y j) in
     fill_poly poly_array;
     set_color black;
     draw_poly_line poly_array
   done;
   moveto 500 350;
   lineto 659 509
+let match_x2 x = function 
+    0 -> x
+  | 1 -> x + 75
+  | 2 -> x + 53
+  | 3 -> x + 128
+  | _ -> x
+
+let draw_angled_top_face2 f x y =
+  set_line_width 7;
+  for j = 0 to 3 do 
+    set_cube_color f.(j);
+    let poly_array = make_poly_array (match_x2 x j) ((j / 2 * 53) + y) in
+    fill_poly poly_array;
+    set_color black;
+    draw_poly_line poly_array
+  done;
+  moveto 275 500;
+  lineto 425 500
+
+let match_y2 y = function 
+    0 -> y
+  | 1 -> y + 53
+  | 2 -> y + 75
+  | 3 -> y + 128
+  | _ -> y
+
+let draw_angled_side_face2 f x y =
+  set_line_width 7;
+  for j = 0 to 3 do 
+    set_cube_color f.(j);
+    let poly_array = make_poly_array2 ((j mod 2 * 53) + x) (match_y2 y j) in
+    fill_poly poly_array;
+    set_color black;
+    draw_poly_line poly_array
+  done;
+  moveto 425 350;
+  lineto 531 456
 
 let draw_3d cube =
   draw_2dcube cube.(3) 275 125;
@@ -145,5 +178,13 @@ let draw2 cube =
   draw_2dcube2 cube.(2) 425 350;
   draw_2dcube2 cube.(1) 275 500;
   draw_2dcube2 cube.(3) 275 200
+
+  let draw2_3d cube =
+    draw_2dcube2 cube.(4) 275 350;
+    draw_2dcube2 cube.(5) 125 350;
+    draw_2dcube2 cube.(3) 275 200;
+    draw_2dcube2 cube.(0) 531 456;
+    draw_angled_top_face2 cube.(1) 275 500;
+    draw_angled_side_face2 cube.(2) 425 350
 
 let () = draw_3d cube_rep

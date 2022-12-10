@@ -49,3 +49,6 @@ val draw2 : cube_type -> unit
 
 val draw_3d : cube_type -> unit
 (** [draw_3d cube] the 3x3 Rubik's Cube from a 3 dimensional view*)
+
+val draw2_3d : cube_type -> unit
+(** [draw2_3d cube] the 2x2 Rubik's Cube from a 3 dimensional view*)

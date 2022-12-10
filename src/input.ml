@@ -95,7 +95,7 @@ let eval_turn turn3 turn2 valid =
       counter := !counter + 1
   | false ->
       turn2 !cube2;
-      draw2 !cube2;
+      if !is_3d then draw2_3d !cube2 else draw2 !cube2;
       set_color !background_color;
       fill_rect 0 0 1000 100;
       if valid then counter := !counter + 1 
@@ -109,7 +109,7 @@ let eval_solve = function
       counter := 0
   | false ->
       cube2 := solve2 ();
-      draw2 !cube2;
+      if !is_3d then draw2_3d !cube2 else draw2 !cube2;
       set_color !background_color;
       fill_rect 0 0 1000 100;
       counter := 0
@@ -122,7 +122,7 @@ let eval_random n dim =
         if !is_3d then draw_3d !cube else draw !cube
     | false ->
         randomize2 !cube2 n;
-        draw2 !cube2
+        if !is_3d then draw2_3d !cube2 else draw2 !cube2
   in
   set_color !background_color;
   fill_rect 0 0 1000 100;
@@ -149,7 +149,6 @@ let change_view (view : cube_type -> unit) is3x3 is3d=
 
 let read_key =
   draw_buttons purple;
-
   while true do
     draw_count ref_c !nextref;
     if button_down () then click := true
@@ -202,7 +201,8 @@ let read_key =
                   draw_buttons purple
               | '2' -> change_view draw2 false false
               | '3' -> change_view draw true false
-              | '4' -> change_view draw_3d true true
+              | '4' -> change_view draw2_3d false true
+              | '5' -> change_view draw_3d true true
               | _ -> ())
         else if (not s.button) && !click then
           match (s.mouse_x, s.mouse_y) with
