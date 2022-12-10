@@ -96,7 +96,7 @@ let draw_buttons color =
 
 let draw_count count n =
   if !background_color = black then set_color white else set_color black;
-  Graphics.moveto 0 0;
+  Graphics.moveto 4 2;
   set_font "-*-fixed-medium-r-semicondensed--50-*-*-*-*-*-iso8859-1";
   Graphics.draw_string (count ^ string_of_int !n);
   Graphics.moveto 0 0
