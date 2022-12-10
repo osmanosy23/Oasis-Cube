@@ -1,7 +1,7 @@
 (** Representation of the 3x3 Rubik's Cube and 2x2 Rubik's Cube on OCaml Graphics.*)
 
 type color
-(** [color] is the type of each of the colors of a Rubik's Cube. *)
+(** [color] is the type of each of the colors of a Rubik's Cube.*)
 
 type face = color array
 (** [face] is type of a face of a Rubik's Cube.
@@ -23,28 +23,28 @@ type face = color array
 *)
 
 type cube_type = face array
-(** [cube_type] is type of the 3x3 Rubik's Cube. *)
+(** [cube_type] is type of the 3x3 Rubik's Cube.*)
 
 val cube_rep : face array
-(** [cube_rep] is the 3x3 Rubik's Cube in the simulation. *)
+(** [cube_rep] is the 3x3 Rubik's Cube in the simulation.*)
 
 val cube_rep2 : face array
-(** [cube_rep2] is the 2x2 Rubik's Cube in the simulation. *)
+(** [cube_rep2] is the 2x2 Rubik's Cube in the simulation.*)
 
 val solve : unit -> color array array
-(** [solve ()] returns a solved  3x3 Rubik's Cube. *)
+(** [solve ()] returns a solved  3x3 Rubik's Cube.*)
 
 val solve2 : unit -> color array array
-(** [solve2 ()] returns a solved  2x2 Rubik's Cube. *)
+(** [solve2 ()] returns a solved  2x2 Rubik's Cube.*)
 
 val draw : cube_type -> unit
-(** [draw cube] draws the 3x3 Rubik's Cube on the screen*)
+(** [draw cube] draws the 3x3 Rubik's Cube on the screen.*)
 
 val draw2 : cube_type -> unit
-(** [draw2 cube] draws the 2x2 Rubik's Cube on the screen*)
+(** [draw2 cube] draws the 2x2 Rubik's Cube on the screen.*)
 
 val draw_3d : cube_type -> unit
-(** [draw_3d cube] draws the 3x3 Rubik's Cube from a 3 dimensional view on the screen*)
+(** [draw_3d cube] draws the 3x3 Rubik's Cube from a 3 dimensional view on the screen.*)
 
 val draw2_3d : cube_type -> unit
-(** [draw2_3d cube] draws the 2x2 Rubik's Cube from a 3 dimensional view on the screen*)
+(** [draw2_3d cube] draws the 2x2 Rubik's Cube from a 3 dimensional view on the screen.*)
