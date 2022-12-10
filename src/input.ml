@@ -164,7 +164,7 @@ let eval_random n dim =
   counter := 0
 
 let check_click x y xup xlo yup ylo turn3 turn2 =
-  if xup >= x && x >= xlo && yup >= y && y >= ylo then eval_turn turn3 turn2 !is_3x3 true
+  if xup >= x && x >= xlo && yup >= y && y >= ylo then eval_turn turn3 turn2 true true
 
 let change_view is3x3 is3d =
   is_3x3 := is3x3;
