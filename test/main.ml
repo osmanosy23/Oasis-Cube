@@ -1,7 +1,7 @@
 open OUnit2
 
 (* open Graphics *)
-open Cube
+open CubeSimulator
 open Actions
 
 type color = White | Red | Blue | Orange | Yellow | Green

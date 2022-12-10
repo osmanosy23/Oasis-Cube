@@ -1,4 +1,4 @@
 (library
  (name CubeSimulator)
  (public_name CubeSimulator)
- (libraries lwt lwt.unix ANSITerminal graphics))
+ (libraries graphics))

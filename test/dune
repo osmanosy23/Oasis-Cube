@@ -1,3 +1,3 @@
 (executable
  (name main)
- (libraries cube graphics ounit2))
+ (libraries CubeSimulator graphics ounit2))

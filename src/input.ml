@@ -1,4 +1,4 @@
-open Cube_rep
+open Cube_graphic
 open Actions
 open Graphics
 open Actions2
