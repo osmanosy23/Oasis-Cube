@@ -13,6 +13,8 @@ let purple = rgb 240 150 240
 let lblue = rgb 157 190 250
 let lred = rgb 255 150 150
 let lgreen = rgb 146 250 146
+let lorange = rgb 255 202 149
+let lyellow = rgb 255 255 148
 let counter = ref 0
 let ref_c = "Counter: "
 let nextref = ref counter
@@ -41,6 +43,12 @@ let draw_buttons color =
   fill_rect 669 103 134 38;
   set_color lred;
   fill_rect 620 155 232 38;
+  set_color lorange;
+  fill_rect 74 259 78 38;
+  fill_rect 166 259 78 38;
+  set_color lyellow;
+  fill_rect 92 207 60 38;
+  fill_rect 166 207 60 38;
   set_color black;
   set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
   moveto 543 255;
@@ -71,6 +79,14 @@ let draw_buttons color =
   draw_string "SOLVE";
   moveto 626 151;
   draw_string "RANDOMIZE";
+  moveto 77 255;
+  draw_string "3x3";
+  moveto 169 255;
+  draw_string "2x2";
+  moveto 99 203;
+  draw_string "3D";
+  moveto 173 203;
+  draw_string "2D";
   draw_prime 566 231;
   draw_prime 640 231;
   draw_prime 714 231;
@@ -131,20 +147,28 @@ let eval_random n dim =
 let check_click x y xup xlo yup ylo turn3 turn2 = 
   if xup >= x && x >= xlo && yup >= y && y >= ylo then eval_turn turn3 turn2 true
 
-let change_view (view : cube_type -> unit) is3x3 is3d=
+let change_view is3x3 is3d=
+  is_3x3 := is3x3;
+  is_3d := is3d;
   set_color !background_color;
   fill_rect 0 0 1000000 1000000;
   is_3d := is3d;
-  match is3x3 with
-  | true ->
-      is_3x3 := true;
+  match is3x3, is3d with
+  | true, true ->
       eval_solve true;
-      view !cube;
+      draw_3d !cube;
       draw_buttons purple
-  | false ->
-      is_3x3 := false;
+  | false, true ->
       eval_solve false;
-      view !cube2;
+      draw2_3d !cube2;
+      draw_buttons purple
+  | true, false ->
+      eval_solve true;
+      draw !cube;
+      draw_buttons purple
+  | false, false ->
+      eval_solve false;
+      draw2 !cube2;
       draw_buttons purple
 
 let read_key =
@@ -199,28 +223,32 @@ let read_key =
                   fill_rect 0 0 1000000 1000000;
                   if !is_3x3 then draw !cube else draw2 !cube;
                   draw_buttons purple
-              | '2' -> change_view draw2 false false
-              | '3' -> change_view draw true false
-              | '4' -> change_view draw2_3d false true
-              | '5' -> change_view draw_3d true true
+              | '2' -> change_view  false false
+              | '3' -> change_view  true false
+              | '4' -> change_view  false true
+              | '5' -> change_view  true true
               | _ -> ())
         else if (not s.button) && !click then
           match (s.mouse_x, s.mouse_y) with
-          | a, b ->
-              check_click a b 581 521 297 259 f_turn  f_turn2;
-              check_click a b 655 595 297 259 r_turn r_turn2;
-              check_click a b 729 669 297 259 u_turn u_turn2;
-              check_click a b 803 743 297 259 b_turn b_turn2;
-              check_click a b 877 817 297 259 l_turn l_turn2;
-              check_click a b 951 891 297 259 d_turn d_turn2;
-              check_click a b 581 521 245 207 f'_turn f'_turn2;
-              check_click a b 655 595 245 207 r'_turn r'_turn2;
-              check_click a b 729 669 245 207 u'_turn u'_turn2;
-              check_click a b 803 743 245 207 b'_turn b'_turn2;
-              check_click a b 877 817 245 207 l'_turn l'_turn2;
-              check_click a b 951 891 245 207 d'_turn d'_turn2;
-              if 803 >= a && a >= 669 && 141 >= b && b >= 103 then eval_solve !is_3x3;
-              if 852 >= a && a >= 620 && 193 >= b && b >= 155 then eval_random 100 !is_3x3;
+          | x, y ->
+              check_click x y 581 521 297 259 f_turn  f_turn2;
+              check_click x y 655 595 297 259 r_turn r_turn2;
+              check_click x y 729 669 297 259 u_turn u_turn2;
+              check_click x y 803 743 297 259 b_turn b_turn2;
+              check_click x y 877 817 297 259 l_turn l_turn2;
+              check_click x y 951 891 297 259 d_turn d_turn2;
+              check_click x y 581 521 245 207 f'_turn f'_turn2;
+              check_click x y 655 595 245 207 r'_turn r'_turn2;
+              check_click x y 729 669 245 207 u'_turn u'_turn2;
+              check_click x y 803 743 245 207 b'_turn b'_turn2;
+              check_click x y 877 817 245 207 l'_turn l'_turn2;
+              check_click x y 951 891 245 207 d'_turn d'_turn2;
+              if 803 >= x && x >= 669 && 141 >= y && y >= 103 then eval_solve !is_3x3;
+              if 852 >= x && x >= 620 && 193 >= y && y >= 155 then eval_random 100 !is_3x3;
+              if 152 >= x && x >= 74 && 297 >= y && y >= 259 then change_view true !is_3d;
+              if 244 >= x && x >= 166 && 297 >= y && y >= 259 then change_view false !is_3d;
+              if 152 >= x && x >= 92 && 245 >= y && y >= 207 then change_view !is_3x3 true;
+              if 226 >= x && x >= 166 && 245 >= y && y >= 207 then change_view !is_3x3 false;
               click := false
       with _ -> failwith "Window closed"
   done
