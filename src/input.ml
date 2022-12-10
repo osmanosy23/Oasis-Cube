@@ -40,18 +40,17 @@ let darkmode bkgrnd =
 let draw_prime x y =
   set_color black;
   fill_rect x y 3 9
+
 let draw_background color n m =
   set_color color;
   fill_rect 0 0 n m
-  
+
 let draw_buttons color =
   draw_background !background_color 1000000 1000000;
   let _ =
     match !is_3x3 with
-    | true ->
-        if !is_3d then draw_3d !cube else draw !cube
-    | false ->
-        if !is_3d then draw2_3d !cube2 else draw2 !cube2
+    | true -> if !is_3d then draw_3d !cube else draw !cube
+    | false -> if !is_3d then draw2_3d !cube2 else draw2 !cube2
   in
   set_color color;
   fill_rect 521 259 60 38;
@@ -131,7 +130,6 @@ let draw_count count n =
   Graphics.draw_string (count ^ string_of_int !n);
   Graphics.moveto 0 0
 
-
 let eval_turn turn3 turn2 valid not_rot =
   let _ =
     match !is_3x3 with
@@ -163,13 +161,14 @@ let eval_random n dim =
     match dim with
     | true ->
         randomize !cube n;
-        if !is_3d then draw_3d !cube else draw !cube
+        if !is_3d then draw_3d !cube else draw !cube;
+        counter := 0
     | false ->
         randomize2 !cube2 n;
-        if !is_3d then draw2_3d !cube2 else draw2 !cube2
+        if !is_3d then draw2_3d !cube2 else draw2 !cube2;
+        counter2 := 0
   in
-  draw_background !background_color 1000 100;
-  counter := 0
+  draw_background !background_color 1000 100
 
 let check_click x y xup xlo yup ylo turn3 turn2 =
   if xup >= x && x >= xlo && yup >= y && y >= ylo then eval_turn turn3 turn2 true true
