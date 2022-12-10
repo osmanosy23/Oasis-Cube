@@ -1,4 +1,4 @@
-(** Representation of 3x3_cube movements *)
+(** Representation of the 3x3 Rubik's Cube movements *)
 
 val u_turn : 'a array array -> unit
 (** [u_turn 3x3_cube] makes a U turn on [3x3_cube]. *)

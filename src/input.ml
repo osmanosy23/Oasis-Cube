@@ -1,7 +1,7 @@
 open Cube_graphic
 open Actions
 open Graphics
-open Actions2
+open Actions2x2
 
 let cube = ref cube_rep
 let cube2 = ref cube_rep2
