@@ -73,7 +73,7 @@ val z'_rotate : 'a array array -> unit
 (** [z'_rotate cube] makes a z' rotation on [cube]. *)
 
 val random_int_bound : int -> int -> int
-(** [random_int_bound a b] returns a random integer in the range [a, b) (a inclusive and b inclusive). *)
+(* [random_int_bound a b] returns a random integer in the range [a, b), a inclusive and b not inclusive *)
 
 val randomize : 'a array array -> int -> unit
 (** [randomize cube] do [n] number of random moves on the [cube].*)
