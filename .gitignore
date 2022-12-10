@@ -1,5 +1,12 @@
-doc
+# assignment
+_doc.public
+_doc.private
+jocalf.zip
+jocalf
+jocalf-mac
+jocalf-ubuntu
 
+# ocaml
 *.cmo
 *.cma
 *.cmi
@@ -9,8 +16,9 @@ doc
 *.byte
 _build
 
+# temporary files
 *.swp
 *~
 \#*\#
 .DS_Store
-doc*/
+
