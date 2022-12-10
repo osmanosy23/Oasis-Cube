@@ -5,7 +5,7 @@ open Actions2
 
 let cube = ref cube_rep
 let cube2 = ref cube_rep2
-let background_color = ref white
+let background_color = ref 0xe4e4e4
 let is_3x3 = ref true
 let is_3d = ref true
 let purple = rgb 240 150 240
@@ -14,7 +14,7 @@ let lred = rgb 255 150 150
 let lgreen = rgb 146 250 146
 let lorange = rgb 255 202 149
 let lyellow = rgb 255 255 148
-let gray = rgb 204 204 204
+let gray = rgb 180 180 180
 let counter = ref 0
 let counter2 = ref 0
 let ref_c = "Counter: "
@@ -25,7 +25,7 @@ let click = ref false
 let darkmode bkgrnd =
   set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
   match bkgrnd with
-  | 0xFFFFFF ->
+  | 0xe4e4e4 ->
       fill_rect 108 155 102 38;
       moveto 111 151;
       set_color black;
@@ -40,8 +40,19 @@ let darkmode bkgrnd =
 let draw_prime x y =
   set_color black;
   fill_rect x y 3 9
-
+let draw_background color n m =
+  set_color color;
+  fill_rect 0 0 n m
+  
 let draw_buttons color =
+  draw_background !background_color 1000000 1000000;
+  let _ =
+    match !is_3x3 with
+    | true ->
+        if !is_3d then draw_3d !cube else draw !cube
+    | false ->
+        if !is_3d then draw2_3d !cube2 else draw2 !cube2
+  in
   set_color color;
   fill_rect 521 259 60 38;
   fill_rect 595 259 60 38;
@@ -120,9 +131,6 @@ let draw_count count n =
   Graphics.draw_string (count ^ string_of_int !n);
   Graphics.moveto 0 0
 
-let draw_background color n m =
-  set_color color;
-  fill_rect 0 0 n m
 
 let eval_turn turn3 turn2 valid not_rot =
   let _ =
@@ -205,8 +213,8 @@ let change_background color =
 
 let check_dark_click x y bkgrnd =
   match bkgrnd with
-  | 0xFFFFFF -> if 210 >= x && x >= 108 && 193 >= y && y >= 155 then change_background 0x323232
-  | 0x323232 -> if 224 >= x && x >= 94 && 193 >= y && y >= 155 then change_background white
+  | 0xe4e4e4 -> if 210 >= x && x >= 108 && 193 >= y && y >= 155 then change_background 0x323232
+  | 0x323232 -> if 224 >= x && x >= 94 && 193 >= y && y >= 155 then change_background 0xe4e4e4
   | _ -> ()
 
 let read_key =
@@ -250,7 +258,7 @@ let read_key =
               | '1' -> eval_random 1 !is_3x3
               | '\\' -> eval_random 100 !is_3x3
               | ',' -> change_background 0x323232
-              | '<' -> change_background white
+              | '<' -> change_background 0xe4e4e4
               | '2' -> change_view false false
               | '3' -> change_view true false
               | '4' -> change_view false true
