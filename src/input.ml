@@ -16,8 +16,10 @@ let lorange = rgb 255 202 149
 let lyellow = rgb 255 255 148
 let gray = rgb 204 204 204
 let counter = ref 0
+let counter2 = ref 0
 let ref_c = "Counter: "
 let nextref = ref counter
+let nextref2 = ref counter2
 let click = ref false
 
 let darkmode bkgrnd =
@@ -133,7 +135,7 @@ let eval_turn turn3 turn2 valid not_rot =
         if !is_3d then draw2_3d !cube2 else draw2 !cube2
   in
   draw_background !background_color 1000 100;
-  if valid && not_rot then incr counter
+  if valid && not_rot then if !is_3x3 then incr counter else incr counter2
 
 let eval_solve dim =
   let _ =
@@ -146,7 +148,7 @@ let eval_solve dim =
         if !is_3d then draw2_3d !cube2 else draw2 !cube2
   in
   draw_background !background_color 1000 100;
-  counter := 0
+  if !is_3x3 then counter := 0 else counter2 := 0
 
 let eval_random n dim =
   let _ =
@@ -210,7 +212,7 @@ let check_dark_click x y bkgrnd =
 let read_key =
   draw_buttons purple;
   while true do
-    draw_count ref_c !nextref;
+    draw_count ref_c (if !is_3x3 then !nextref else !nextref2);
     if button_down () then click := true
     else
       try
