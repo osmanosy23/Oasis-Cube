@@ -8,18 +8,29 @@ let cube2 = ref cube_rep2
 let background_color = ref white
 let is_3x3 = ref true
 let is_3d = ref true
-
 let purple = rgb 240 150 240
 let lblue = rgb 157 190 250
 let lred = rgb 255 150 150
 let lgreen = rgb 146 250 146
 let lorange = rgb 255 202 149
 let lyellow = rgb 255 255 148
+let gray = rgb 204 204 204
 let counter = ref 0
 let ref_c = "Counter: "
 let nextref = ref counter
 let click = ref false
-
+let darkmode bkgrnd =  
+  set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
+  match bkgrnd with 
+  0xFFFFFF -> fill_rect 108 155 102 38; 
+    moveto 111 151;
+    set_color black; 
+    draw_string "DARK";
+  | 0x000000 -> fill_rect 94 155 130 38;
+    moveto 98 151;
+    set_color black;  
+    draw_string "LIGHT";
+  | _ -> ()
 let draw_prime x y =
   set_color black;
   fill_rect x y 3 9
@@ -49,6 +60,8 @@ let draw_buttons color =
   set_color lyellow;
   fill_rect 92 207 60 38;
   fill_rect 166 207 60 38;
+  set_color gray; 
+  darkmode !background_color; 
   set_color black;
   set_font "-*-fixed-medium-r-semicondensed--45-*-*-*-*-*-iso8859-1";
   moveto 543 255;
@@ -170,6 +183,30 @@ let change_view is3x3 is3d=
       eval_solve false;
       draw2 !cube2;
       draw_buttons purple
+  
+  let change_background color = 
+    background_color := color;
+    set_color !background_color;
+    fill_rect 0 0 1000000 1000000;
+    match !is_3x3, !is_3d with
+    | true, true ->
+      draw_3d !cube;
+      draw_buttons purple
+    | false, true ->
+      draw2_3d !cube2;
+      draw_buttons purple
+    | true, false ->
+      draw !cube;
+      draw_buttons purple
+    | false, false ->
+      draw2 !cube2;
+      draw_buttons purple
+
+let check_dark_click x y bkgrnd =
+  match bkgrnd with 
+  0xFFFFFF -> if 210 >= x && x >= 108 && 500 >= y && y >= 155 then change_background black
+  | 0x000000 -> if 224 >= x && x >= 94 && 193 >= y && y >= 155 then change_background white
+  | _ -> ()
 
 let read_key =
   draw_buttons purple;
@@ -211,18 +248,8 @@ let read_key =
               | '.' -> eval_solve !is_3x3
               | '1' -> eval_random 1 !is_3x3
               | '\\' -> eval_random 100 !is_3x3
-              | ',' ->
-                  background_color := black;
-                  set_color !background_color;
-                  fill_rect 0 0 1000000 1000000;
-                  if !is_3x3 then draw !cube else draw2 !cube;
-                  draw_buttons purple
-              | '<' ->
-                  background_color := white;
-                  set_color !background_color;
-                  fill_rect 0 0 1000000 1000000;
-                  if !is_3x3 then draw !cube else draw2 !cube;
-                  draw_buttons purple
+              | ',' -> change_background black
+              | '<' -> change_background white
               | '2' -> change_view  false false
               | '3' -> change_view  true false
               | '4' -> change_view  false true
@@ -249,6 +276,7 @@ let read_key =
               if 244 >= x && x >= 166 && 297 >= y && y >= 259 then change_view false !is_3d;
               if 152 >= x && x >= 92 && 245 >= y && y >= 207 then change_view !is_3x3 true;
               if 226 >= x && x >= 166 && 245 >= y && y >= 207 then change_view !is_3x3 false;
+              check_dark_click x y !background_color;
               click := false
       with _ -> failwith "Window closed"
   done
