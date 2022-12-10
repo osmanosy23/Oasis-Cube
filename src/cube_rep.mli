@@ -16,7 +16,7 @@ type face = color array
     6 = top left of face
     7 = top middle of face
     8 = top right of face 
-    For 2x2: Indices 0-8 of a face array represent the following
+    For 2x2: Indices 0-3 of a face array represent the following
     0 = bottom left of face
     1 = bottom right of face
     2 = top left of face
