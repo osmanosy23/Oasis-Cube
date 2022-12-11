@@ -1,6 +1,6 @@
 (* open GdkPixbuf *)
 open Graphics
-open Lwt
+(* open Lwt *)
 
 (* open Bigarray
    open Char

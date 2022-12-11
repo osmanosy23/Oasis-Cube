@@ -1,6 +1,7 @@
 (library
  (name CubeSimulator)
- (libraries lwt camlimages lablgtk3 graphics)
+ (libraries graphics)
+ ; (libraries lwt camlimages lablgtk3 graphics)
  ; (preprocess
  ;  (pps camlimages.lablgtk3))
  (public_name CubeSimulator))
