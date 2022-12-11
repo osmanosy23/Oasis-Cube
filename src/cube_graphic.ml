@@ -1,4 +1,11 @@
+(* open GdkPixbuf *)
 open Graphics
+open Lwt
+
+(* open Bigarray
+   open Char
+   open String
+   open Bigarray.Array1 *)
 
 let () = open_graph " 1000x900"
 
@@ -178,4 +185,65 @@ let draw2_3d cube =
   draw_angled_top_face2 cube.(1) 275 500;
   draw_angled_side_face2 cube.(2) 425 350
 
+(* let () =
+   let im = create_image 100 100 in
+   draw_image im 300 100 *)
+
+(* let pixbuf = GdkPixbuf.from_file *)
+
+(* let image_filename = "immages/cs3110logo improved.PNG" (* Replace with the path to your image file *)
+   let pixbuf = GdkPixbuf.from_file image_filename
+   let pixels = GdkPixbuf.get_pixels pixbuf
+   let rowstride = GdkPixbuf.get_rowstride pixbuf *)
+
+(* Convert the pixel data into a format that can be drawn on the graphics window using Graphics.make_image *)
+(* let image_data =
+   (* Define the pixels and rowstride variables and initialize them with the appropriate values *)
+   let pixels = GdkPixbuf.get_pixels pixbuf and rowstride = GdkPixbuf.get_rowstride pixbuf in
+   let height = GdkPixbuf.get_height pixbuf and width = GdkPixbuf.get_width pixbuf in
+   let channels = GdkPixbuf.get_n_channels pixbuf in
+   (* Switch the order of the height and width arguments passed to the Array.make_matrix function *)
+   let image_data = Array.make_matrix width height 0 in
+   (* Use the Bigarray.Array1.to_string function to convert the pixels array to a string *)
+   let pixels_str = Bigarray.Array1.to_string pixels in
+   for y = 0 to height - 1 do
+     (* Use the String.sub function to extract the row of pixel data for the current row in the image *)
+     let row = String.sub pixels_str (y * rowstride) (rowstride - 1) in
+     for x = 0 to width - 1 do
+       let offset = x * channels in
+       (* Use the Char.code function to convert the raw byte values to integer values *)
+       let r = Char.code row.[offset] and g = Char.code row.[offset + 1] and b = Char.code row.[offset + 2] in
+       let pixel = (r lsl 16) + (g lsl 8) + b in
+       image_data.(y).(x) <- pixel
+     done
+   done;
+   image_data *)
+
+(* Open the image file and read its contents into a buffer *)
+(* let image_file = open_in image_filename
+   let image_buffer = Buffer.create 1024
+   let _ = Buffer.add_channel image_buffer image_file (in_channel_length image_file)
+   let image_data = Buffer.contents image_buffer
+   let () = draw_3d cube_rep
+   let image_data_scanner = Scanf.Scanning.from_string image_data
+   let image_data_array = ref []
+
+   let _ =
+     try
+       while true do
+         let row = Scanf.bscanf image_data_scanner "[|%d" (fun x -> [ x ]) in
+         let row = ref row in
+         while !row <> [] do
+           row := Scanf.bscanf image_data_scanner ";%d" (fun x -> x :: !row)
+         done;
+         image_data_array := !row :: !image_data_array
+       done
+     with End_of_file -> ()
+
+   let image_data_array = Array.of_list (List.rev !image_data_array)
+   let image_data_array = Array.map (fun row -> Array.of_list row) image_data_array *)
+(* let () = draw_image (make_image image_data_array) 0 0 *)
 let () = draw_3d cube_rep
+(* let () =
+   let im = create_image 300 300 in
+   draw_image im 300 300 *)
