@@ -1,4 +1,5 @@
 (** Parsing of user keyboard press and mouse click. Type [dune utop] in terminal to run code*)
+
 val darkmode : int -> unit
 (** [darkmode bkgrnd] changes the button responsible for changing the background
     color to the corresponding adjacent color. That is, given a color represented 
