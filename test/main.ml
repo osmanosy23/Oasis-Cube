@@ -1,8 +1,77 @@
 open OUnit2
-
-(* open Graphics *)
 open CubeSimulator
 open Actions
+
+
+(** Testing Plan:
+    When writing our test cases, we gave great attention to our 3x3 representation
+     (i.e., its associated moves) as it was the base from which the vast majority 
+     of our logic extended from (which is only natural as it was our first and 
+     most complex model). Essentially, all rubik's cube turns (U, U', D, D', B, B', 
+     F, F', R, R', L, L', M, M', E, E', S, S', Y, Y', X, X', Z, Z') were 
+     automatically tested via OUnit; by extension, this included other functions 
+     such as our clockwise rotation given the nature of these turns w/ regards to r
+     ubik’s cube logic (i.e., many of these functions call on turn_counter_face as 
+     a helper). In contrast, functions primarily associated with user input and visuals, 
+     such as draw_counter—which draws a visible counter on the screen that counts 
+     the number of moves made by the user— and our draw_background function—which 
+     changes the color of the background— were tested manually. We believe that 
+     this was the best way to go about it as it would be quite redundant, and 
+     unusual (such as in the case of the background color) to write OUnit test 
+     cases for such functions given their nature. We’d instantly be able to tell if 
+      something was off w/ regards to our visuals without the need of automated 
+     testing (e.g., seeing if our draw function in Cube_representation actually 
+      drew a cube on the graphics window), and it wouldn’t be necessary given 
+     that visuals are static in nature. This also applies to user input (i.e., 
+     keyboard presses/mouse clicks); it would be quite awkward to write OUnit tests 
+     for such functions. Note: this is with regards to the actual user input, not 
+     the changes that result from said input, all of which were tested via OUnit 
+     unless it was an input corresponding to a visual effect and not an action that 
+     would result in the cube array being altered. By manually testing to see that 
+     a given user input leads to the desired result, and that no other input leads 
+     to that result, we could be sure that this functionality was working as intended. 
+     And given the nature of our project, nearly all the functions in Actions were 
+     tested through OUnit, whereas Input and Cube_graphics essentially required 
+     manual testing. Note: Actions2x2 wasn’t tested as not only would it lead to 
+     an extraordinarily long testing unit, but it would be redundant, for if we 
+      could guarantee the correctness of the functions in Actions, we could ensure 
+     the correctness of Actions2x2, which houses essentially the same logic albeit 
+     some removed given the nature of a 2x2 cube (i.e., there is no “equatorial” or 
+     “middle” turn for 2x2’s, and as such they dont require said functions); regardless, 
+     they share many of the same functions. Moving on, as for our automated tests, 
+     due to the nature of graphics and our function design concerning our actions 
+     (which don’t contain any complex branches), we believed it was best to take 
+     a black box approach. Furthermore, given our randomized function, we also 
+     heavily incorporated this function into our tests, leading to a randomized 
+     approach (technically) alongside our black box testing. For the most part, 
+     we had 5 different types of tests that we applied to all of our turns: 1) 
+     the default case: we’d create a cube in the default setting (i.e., solved) 
+     and apply 1 turn to it 2) the 2 case: we’d apply 2 of said turn to the default 
+     ube 3) the undo case: applying 1 of said turn and its counterpart (e.g., 
+     applying a U turn and a U’ turn immediately) to the default cube which 
+     should result in the default cube 4) the four case: applying four of said 
+     turns to a cube, which should result to it returning to its original state 
+     5) the synonym test: applying three of a given turn should be equivalent to 
+     one turn of its counterpart (i.e. applying three U turns on a cube should 
+     be the same as one U’ turn on said cube). Note, for cases 4 and 5, we made 
+     use of our randomize function such that the turns in these cases operate on a 
+     cube that has had 100 random turns made to it as opposed to a cube with 0 
+     random moves made onto it (i.e., the default cube). By operating in such a 
+     manner, we could be sure of our correctness as we were not only comparing 
+     the effects of a single turn and many turns of a given turn (represented 
+     within the 2 case by nature via induction) to their expected results, 
+     but we were also testing the impact a given turn and its counterpart had on 
+     one another, resulting in an enhanced level of correctness. We could be certain 
+     that the logic a specific action had on the cube was universal and extended 
+     to other turns. And we could be certain that the logic of a specific turn was 
+     valid if it was “neutralized” by its counterpart. And through steps 4 and 5, 
+      not only are we introducing (algebraic) logic that strengthens the validity of 
+     a given turn (or turns for that matter) and its intended effect, but by 
+     applying this logic to a cube that has had 100 random turns made to it, we 
+     could ensure that the logic of every turn carried out past a default/solved 
+     cube and was truly applicable in any setting, adding another level of 
+     assurance and correctness.  *)
+
 
 type color = White | Red | Blue | Orange | Yellow | Green
 let white_face = [| White; White; White; White; White; White; White; White; White |]
