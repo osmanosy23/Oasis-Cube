@@ -55,4 +55,4 @@ val z'_rotate2 : 'a array array -> unit
 (** [z'_rotate2 2x2_cube] makes a z' rotation on [2x2_cube].*)
 
 val randomize2 : 'a array array -> int -> unit
-(** [randomize2 2x2_cube] do [n] number of random moves on the [2x2_cube].*)
+(** [randomize2 2x2_cube n] do [n] number of random moves on the [2x2_cube].*)

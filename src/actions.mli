@@ -104,4 +104,4 @@ val random_int_bound : int -> int -> int
 (** [random_int_bound a b] returns a random integer in the range from [a] to [b] (a inclusive and b not inclusive).*)
 
 val randomize : 'a array array -> int -> unit
-(** [randomize 3x3_cube] do [n] number of random moves on the [3x3_cube].*)
+(** [randomize 3x3_cube n] do [n] number of random moves on the [3x3_cube].*)
