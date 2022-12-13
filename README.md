@@ -31,7 +31,6 @@ opam install batteries
 Execute the following lines:
 ```
 dune utop
-#use "src/cube.ml";;
 ```
 ## **Controls**
 - Press the "r" key to turn the cube face clockwise
