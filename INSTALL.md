@@ -33,6 +33,45 @@ Execute the following lines:
 dune utop
 ```
 ## **Controls**
-- Press the "r" key to turn the cube face clockwise
-- Press the "c" key to turn the cube face counter-clockwise
-- Press the "q" key to terminate the program
+### Note: Keyboard presses are case-sensitive
+- Press the "q" key to terminate the program.
+- Click the SOLVE button or press the "." key to solve the cube.
+- Click the RANDOMIZE button or press the "\" key to randomize the cube.
+- Press the "1" key to do one random turn on the cube.
+- Click the DARK button or press the "," key to turn on dark mode.
+- Click the LIGHT button or press the "<" key to turn on light mode.
+- Click the 2x2 button to change the dimensions of the cube to a 2x2 Rubik's cube.
+- Click the 3x3 button to change the dimensions of the cube to a 3x3 Rubik's cube.
+- Click the 2D button to change the view of the cube to a 2D representation.
+- Click the 3D button to change the view of the cube to a 3D representation.
+- Press the "2" key to view the 2D representation of the 2x2 cube.
+- Press the "3" key to view the 2D representation of the 3x3 cube.
+- Press the "4" key to view the 3D representation of the 2x2 Rubik's cube.
+- Press the "5" key to view the 3D representation of the 3x3 Rubik's cube.
+### Shared 2x2 and 3x3 Controls
+- Click the F button or press the "f" key to do an F turn on the cube
+- Click the F' button or press the "F" key to do an F' turn on the cube
+- Click the R button or press the "r" key to do an R turn on the cube
+- Click the R' button or press the "R" key to do an R' turn on the cube
+- Click the U button or press the "u" key to do a U turn on the cube
+- Click the U' button or press the "U" key to do a U' turn on the cube
+- Click the B button or press the "b" key to do a B turn on the cube
+- Click the B' button or press the "B" key to do a B' turn on the cube
+- Click the L button or press the "l" key to do an L turn on the cube
+- Click the L' button or press the "L" key to do an L' turn on the cube
+- Click the D button or press the "d" key to do a D turn on the cube
+- Click the D' button or press the "D" key to do a D' turn on the cube
+- Press the "x" key to do an x rotation on the cube
+- Press the "X" key to do an x' rotation on the cube
+- Press the "y" key to do a y rotation on the cube
+- Press the "Y" key to do a y' rotation on the cube
+- Press the "z" key to do a z rotation on the cube
+- Press the "Z" key to do a z' rotation on the cube
+### Unique 3x3 Controls
+- Press the "m" key to do an M turn on the cube
+- Press the "M" key to do an M' turn on the cube
+- Press the "e" key to do an E turn on the cube
+- Press the "E" key to do an E' turn on the cube
+- Press the "s" key to do an S turn on the cube
+- Press the "S" key to do an S' turn on the cube
+

@@ -143,7 +143,7 @@ let turn_clock_layer_D rface tface lface bface =
       lface.(2) <- l;
       tface.(0) <- g;
       tface.(1) <- h;
-      tface.(2) <- i;
+      tface.(2) <- i; 
       rface.(0) <- d;
       rface.(1) <- e;
       rface.(2) <- f;
