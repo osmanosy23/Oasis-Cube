@@ -215,7 +215,6 @@ let turn_S rface tface lface bface =
       lface.(7) <- f
   | _ -> failwith "invalid"
 
-(*let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]*)
 let f_turn cube =
   turn_clock_face cube.(4);
   turn_F cube.(2) cube.(1) cube.(5) cube.(3)
@@ -331,4 +330,3 @@ let randomize cube n =
     | 11 -> b'_turn cube
     | _ -> failwith "invalid"
   done
-(*let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]*)

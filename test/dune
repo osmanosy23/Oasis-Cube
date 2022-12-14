@@ -1,4 +1,3 @@
 (executable
  (name main)
- ; (libraries CubeSimulator graphics camlimages ounit2)
  (libraries CubeSimulator graphics ounit2))

@@ -11,7 +11,7 @@ val draw_buttons : int -> unit
 (** [draw_buttons color] takes in a color represented as an int and draws 
     buttons of said color on the screen. Said buttons correspond to a set of 
     actions, namely: F, U, R, B, L, D and their associated counterparts, as well 
-    as a RANDOMIZE" button, a "SOLVE" button, a "3x3 and "2x2" button, a 
+    as a "RANDOMIZE" button, a "SOLVE" button, a "3x3" and "2x2" button, a 
     "2D" and "3D" button, and a button that represents the adjacent background 
     color (either "LIGHT" or "DARK"). This function also takes into account 
     whether or not the cube is a 3x3 and its dimension, drawing the appropriate 

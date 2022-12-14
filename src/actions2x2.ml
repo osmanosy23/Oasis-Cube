@@ -101,8 +101,6 @@ let turn_clock_layer_D rface tface lface bface =
       bface.(1) <- b
   | _ -> failwith "invalid"
 
-(*let cube = [| red_face; yellow_face; blue_face; white_face; orange_face; green_face |]*)
-
 let f_turn2 cube =
   turn_clock_face cube.(4);
   turn_F cube.(2) cube.(1) cube.(5) cube.(3)
