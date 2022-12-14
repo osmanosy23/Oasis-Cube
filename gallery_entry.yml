@@ -1,0 +1,20 @@
+---
+group:
+  - name: Frank Zhou
+    netid: fcz5
+  - name: Asim Bacchus
+    netid: ahb229
+  - name: Osman Osman
+    netid: oeo7
+pm:
+  name: Kaitlyn Chen
+  netid: kjc256
+
+publish: true
+title: "The Oasis Cube"
+git-repo: "https://github.com/osmanosy23/CS-3110-Final-Project"
+demo-video-url: ""
+desc: >
+  Our project is a interactive simulator for 2x2 and 3x3 Rubik's Cube. It supports all the movements
+  of Rubik's Cube (R U L ...) and rotations (y, z, x). The cube can also solve itself 
+  if prompted. It has a 3D representation and a 2D representation.
