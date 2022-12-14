@@ -14,7 +14,6 @@ utop:
 test:
 	OCAMLRUNPARAM=b dune exec test/main.exe
 
-
 zip:
 	rm -f cube.zip
 	zip -r cube.zip . -x@exclude.lst
