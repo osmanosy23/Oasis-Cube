@@ -1,3 +1,9 @@
+# Oasis_Cube: A Rubik's Cube Simulator in OCaml
+Created by Osman Osman, Frank Zhou, Asim Bacchus*
+
+https://user-images.githubusercontent.com/62918647/208260645-c8613ec7-3086-41e7-b914-24114a900923.mov
+
+
 # **Installing OCaml Graphics**
 ## *Mac OS X*
 1. Install [XQuartz](https://www.xquartz.org/)
@@ -76,7 +82,3 @@ dune utop
 - Press the "E" key to do an E' turn on the cube.
 - Press the "s" key to do an S turn on the cube. 
 - Press the "S" key to do an S' turn on the cube. 
-
- 
-
-Authors: Osman Osman (oeo7), Frank Zhou (fcz5), Asim Bacchus (ahb229)
