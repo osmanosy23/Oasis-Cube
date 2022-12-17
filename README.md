@@ -1,6 +1,7 @@
-# Oasis_Cube: A Rubik's Cube Simulator in OCaml
-Created by Osman Osman, Frank Zhou, Asim Bacchus*
+# Oasis Cube: A Rubik's Cube Simulator in OCaml
+## Created by Osman Osman, Frank Zhou, Asim Bacchus
 
+## A short demo
 https://user-images.githubusercontent.com/62918647/208260645-c8613ec7-3086-41e7-b914-24114a900923.mov
 
 
